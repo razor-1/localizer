@@ -1,0 +1,17 @@
+package es_CR
+
+import "github.com/theplant/i18n/cldr"
+
+var Locale = &cldr.Locale{
+	Locale: "es_CR",
+	Number: cldr.Number{
+		Symbols:    symbols,
+		Formats:    formats,
+		Currencies: currencies,
+	},
+	Calendar: calendar,
+}
+
+func init() {
+	cldr.RegisterLocale(Locale)
+}
