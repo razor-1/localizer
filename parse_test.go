@@ -1,6 +1,11 @@
-package cldr
+package cldr_test
 
-import "testing"
+import (
+	"github.com/theplant/cldr"
+	_ "github.com/theplant/cldr/resources/locales/en"
+
+	"testing"
+)
 
 func TestParse(t *testing.T) {
 	cases := []struct {
@@ -29,7 +34,7 @@ func TestParse(t *testing.T) {
 		},
 	}
 	for _, c := range cases {
-		got, err := Parse(c.locale, c.text, c.data)
+		got, err := cldr.Parse(c.locale, c.text, c.data)
 		if err != nil {
 			t.Error(err)
 		}

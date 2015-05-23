@@ -55,7 +55,11 @@ func RegisterPluralRule(locale string, ruler PluralRuler) {
 }
 
 func FindRule(locale string, count NumberValue) (rule PluralRule) {
-	ruler, ok := pluralRules[locale]
+	l, ok := GetLocale(locale)
+	if !ok {
+		return PluralRuleOther
+	}
+	ruler, ok := pluralRules[l.PluralRule]
 	if !ok {
 		return PluralRuleOther
 	}
