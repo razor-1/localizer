@@ -1,6 +1,6 @@
 # CLDR
 
-cldr is subset golang i18n implementation using Common Locale Data Repository to format dates, plurals (and more in the future), inspired by [twitter-cldr-rb](https://github.com/twitter/twitter-cldr-rb) and borrowing some codes from [github.com/vube/i18n](https://github.com/vube/i18n).
+cldr is a golang i18n implementation using Common Locale Data Repository to format dates, plurals (and more in the future), inspired by [twitter-cldr-rb](https://github.com/twitter/twitter-cldr-rb) and borrowing some codes from [github.com/vube/i18n](https://github.com/vube/i18n).
 
 # How to use
 
