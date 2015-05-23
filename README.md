@@ -29,4 +29,22 @@ More API could be found [here](https://godoc.org/github.com/theplant/cldr).
 
 # How to add locales
 
+```
+cldr.RegisterLocale(Locale{...})
+```
+
 # How to override default locales
+
+```
+// solution 1
+// using the same locale name
+
+import _ github.com/theplant/cldr/resources/locales/en
+cldr.RegisterLocale(Locale{Locale: "en"})
+
+// solution 2
+// update the exported locale directly
+
+import github.com/theplant/cldr/resources/locales/en
+en.Locale.PluralRule = "2A"
+```
