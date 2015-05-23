@@ -1,5 +1,6 @@
 package cldr
 
+// @xerox
 type Locale struct {
 	Locale     string
 	Number     Number
@@ -89,7 +90,12 @@ var locales = map[string]*Locale{}
 
 // TODO: can override paritally instead of replace it as a whole for existed locales
 func RegisterLocale(loc *Locale) {
-	locales[loc.Locale] = loc
+	old, ok := locales[loc.Locale]
+	if ok {
+		Copy(loc, old)
+	} else {
+		locales[loc.Locale] = loc
+	}
 }
 
 func GetLocale(locale string) (*Locale, bool) {
