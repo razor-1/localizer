@@ -23,7 +23,7 @@ func main() {
 }
 ```
 
-If you don't like hand ipmorting locales, you can import `github.com/theplant/cldr/resources/locales`, which import all available locales in cldr pacakge.
+If you don't like hand-importing locales, you can import `github.com/theplant/cldr/resources/locales`, which import all available locales in cldr pacakge.
 
 More API could be found [here](https://godoc.org/github.com/theplant/cldr).
 
