@@ -1,6 +1,6 @@
 package ml
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "ADP", DisplayName: "അൻഡോറൻ പെസെയ്റ്റ", Symbol: ""},

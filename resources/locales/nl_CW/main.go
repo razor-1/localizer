@@ -1,6 +1,6 @@
 package nl_CW
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var Locale = &cldr.Locale{
 	Locale: "nl_CW",
@@ -9,7 +9,8 @@ var Locale = &cldr.Locale{
 		Formats:    formats,
 		Currencies: currencies,
 	},
-	Calendar: calendar,
+	Calendar:   calendar,
+	PluralRule: pluralRule,
 }
 
 func init() {

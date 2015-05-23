@@ -1,6 +1,6 @@
 package sbp
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "Ihela ya Shitwa sha Shiyalabu", Symbol: ""},

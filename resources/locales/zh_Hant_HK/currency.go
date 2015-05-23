@@ -1,6 +1,6 @@
 package zh_Hant_HK
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "阿拉伯聯合酋長國迪爾汗", Symbol: ""},

@@ -1,6 +1,6 @@
 package hr
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var calendar = cldr.Calendar{
 	Formats: cldr.CalendarFormats{

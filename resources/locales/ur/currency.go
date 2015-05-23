@@ -1,6 +1,6 @@
 package ur
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "متحدہ عرب اماراتی درہم", Symbol: "AED"},

@@ -1,6 +1,6 @@
 package ha
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "Kuɗin Haɗaɗɗiyar Daular Larabawa", Symbol: ""},

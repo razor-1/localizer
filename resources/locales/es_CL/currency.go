@@ -1,6 +1,6 @@
 package es_CL
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "CLP", DisplayName: "", Symbol: "$"},

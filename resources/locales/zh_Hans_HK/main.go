@@ -1,6 +1,6 @@
 package zh_Hans_HK
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var Locale = &cldr.Locale{
 	Locale: "zh_Hans_HK",
@@ -9,7 +9,8 @@ var Locale = &cldr.Locale{
 		Formats:    formats,
 		Currencies: currencies,
 	},
-	Calendar: calendar,
+	Calendar:   calendar,
+	PluralRule: pluralRule,
 }
 
 func init() {

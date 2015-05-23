@@ -1,6 +1,6 @@
 package asa
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "dirham ya Falme dha Kiarabu", Symbol: ""},

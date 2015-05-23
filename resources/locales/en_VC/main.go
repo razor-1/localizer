@@ -1,6 +1,6 @@
 package en_VC
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var Locale = &cldr.Locale{
 	Locale: "en_VC",
@@ -9,7 +9,8 @@ var Locale = &cldr.Locale{
 		Formats:    formats,
 		Currencies: currencies,
 	},
-	Calendar: calendar,
+	Calendar:   calendar,
+	PluralRule: pluralRule,
 }
 
 func init() {

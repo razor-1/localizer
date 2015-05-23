@@ -1,6 +1,6 @@
 package bn
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "ADP", DisplayName: "এ্যান্ডোরান পেসেতা", Symbol: ""},

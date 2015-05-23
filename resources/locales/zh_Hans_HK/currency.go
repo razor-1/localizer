@@ -1,6 +1,6 @@
 package zh_Hans_HK
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AWG", DisplayName: "阿鲁巴弗罗林", Symbol: ""},

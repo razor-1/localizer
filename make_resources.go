@@ -11,7 +11,7 @@ import (
 	"text/template"
 
 	"github.com/kr/pretty"
-	i18n "github.com/theplant/i18n/cldr"
+	i18n "github.com/theplant/cldr"
 	"golang.org/x/text/cldr"
 )
 
@@ -286,7 +286,7 @@ func main() {
 			defer func() { currencyFile.Close() }()
 
 			mainCodes, err := format.Source([]byte(fmt.Sprintf(`package %s
-			import "github.com/theplant/i18n/cldr"
+			import "github.com/theplant/cldr"
 
 			var Locale = &cldr.Locale{
 				Locale: %q,
@@ -296,6 +296,7 @@ func main() {
 					Currencies: currencies,
 				},
 				Calendar: calendar,
+				PluralRule:   pluralRule,
 			}
 
 			func init() {
@@ -308,7 +309,7 @@ func main() {
 			fmt.Fprintf(mainFile, "%s", mainCodes)
 
 			numberCodes, err := format.Source([]byte(fmt.Sprintf(`package %s
-			import "github.com/theplant/i18n/cldr"
+			import "github.com/theplant/cldr"
 
 			var (
 				symbols = %# v
@@ -321,7 +322,7 @@ func main() {
 			fmt.Fprintf(numberFile, "%s", numberCodes)
 
 			currencyCodes, err := format.Source([]byte(fmt.Sprintf(`package %s
-			import "github.com/theplant/i18n/cldr"
+			import "github.com/theplant/cldr"
 
 			var currencies = %# v
 		`, locale, pretty.Formatter(number.Currencies))))
@@ -338,7 +339,7 @@ func main() {
 			defer func() { calendarFile.Close() }()
 
 			calendarCodes, err := format.Source([]byte(fmt.Sprintf(`package %s
-			import "github.com/theplant/i18n/cldr"
+			import "github.com/theplant/cldr"
 
 			var calendar = %# v
 		`, locale, pretty.Formatter(calendar))))
@@ -346,6 +347,21 @@ func main() {
 				panic(err)
 			}
 			fmt.Fprintf(calendarFile, "%s", calendarCodes)
+
+			pluralFile, err := os.Create(path + "/plural.go")
+			if err != nil {
+				panic(err)
+			}
+			defer func() { pluralFile.Close() }()
+
+			pluralCodes, err := format.Source([]byte(fmt.Sprintf(`package %s
+
+			var pluralRule = "1"
+		`, locale)))
+			if err != nil {
+				panic(err)
+			}
+			fmt.Fprintf(pluralFile, "%s", pluralCodes)
 		}(locale, number)
 	}
 
@@ -358,7 +374,7 @@ func main() {
 	defer func() { allFile.Close() }()
 	tmpl, err := template.New("").Parse(`package locales
 		import (
-			{{range $locale, $_ := .}}_ "github.com/theplant/i18n/cldr/resources/locales/{{$locale}}"
+			{{range $locale, $_ := .}}_ "github.com/theplant/cldr/resources/locales/{{$locale}}"
 		{{end}})
 	`)
 	if err != nil {

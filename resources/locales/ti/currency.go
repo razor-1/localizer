@@ -1,6 +1,6 @@
 package ti
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "BRL", DisplayName: "የብራዚል ሪል", Symbol: ""},

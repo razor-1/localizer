@@ -1,6 +1,6 @@
 package ug
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "ADP", DisplayName: "ئاندورران پېسېتاسى", Symbol: ""},

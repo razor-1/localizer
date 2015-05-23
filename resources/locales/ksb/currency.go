@@ -1,6 +1,6 @@
 package ksb
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "dilham ya Falme za Kialabu", Symbol: ""},

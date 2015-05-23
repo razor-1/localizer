@@ -1,6 +1,6 @@
 package teo
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "Ango’otol lok’ Falme za Kiarabu", Symbol: ""},

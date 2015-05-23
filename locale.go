@@ -1,9 +1,10 @@
 package cldr
 
 type Locale struct {
-	Locale   string
-	Number   Number
-	Calendar Calendar
+	Locale     string
+	Number     Number
+	Calendar   Calendar
+	PluralRule string
 }
 
 type Number struct {

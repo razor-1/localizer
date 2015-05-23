@@ -1,6 +1,6 @@
 package br
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "ADP", DisplayName: "peseta Andorra", Symbol: ""},

@@ -1,6 +1,6 @@
 package en_001
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "BYB", DisplayName: "Belarusian New Rouble (1994–1999)", Symbol: ""},

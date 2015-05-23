@@ -1,6 +1,6 @@
 package kn
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "ಸಂಯುಕ್ತ ಅರಬ್\u200c ಎಮಿರೇಟ್\u200c\u200cಗಳ ದಿರಾಮ್\u200c\u200c", Symbol: "AED"},

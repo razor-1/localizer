@@ -1,6 +1,6 @@
 package kab
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "Adirham n Tgeldunin Taɛrabin Yedduklen", Symbol: ""},

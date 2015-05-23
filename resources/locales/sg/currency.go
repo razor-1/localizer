@@ -1,6 +1,6 @@
 package sg
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "dirâm tî âEmirâti tî Arâbo Ôko", Symbol: ""},

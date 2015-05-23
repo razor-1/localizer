@@ -1,6 +1,6 @@
 package seh
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var (
 	symbols = cldr.Symbols{Decimal: ",", Group: ".", Negative: "", Percent: "", PerMille: ""}

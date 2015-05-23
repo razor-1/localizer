@@ -1,6 +1,6 @@
 package gu
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "યુનાઈટેડ આરબ અમિરાત દિરહામ", Symbol: "AED"},

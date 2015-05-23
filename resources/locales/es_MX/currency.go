@@ -1,6 +1,6 @@
 package es_MX
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AFN", DisplayName: "afgani afgano", Symbol: "Af"},

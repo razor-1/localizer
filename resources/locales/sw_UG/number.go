@@ -1,6 +1,6 @@
 package sw_UG
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var (
 	symbols = cldr.Symbols{}

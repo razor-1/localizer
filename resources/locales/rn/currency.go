@@ -1,6 +1,6 @@
 package rn
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "AED", DisplayName: "Idiramu ryo muri Leta Zunze Ubumwe z’Abarabu", Symbol: ""},

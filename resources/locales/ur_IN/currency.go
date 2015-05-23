@@ -1,6 +1,6 @@
 package ur_IN
 
-import "github.com/theplant/i18n/cldr"
+import "github.com/theplant/cldr"
 
 var currencies = []cldr.Currency{
 	{Currency: "CRC", DisplayName: "کوسٹا ریکا کولون", Symbol: ""},
