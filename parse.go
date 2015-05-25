@@ -33,6 +33,7 @@ func toPluralFew(text string) pluralFew     { return pluralFew(text) }
 func toPluralMany(text string) pluralMany   { return pluralMany(text) }
 func toPluralOther(text string) pluralOther { return pluralOther(text) }
 
+// TODO: rename to T and add helper in Locale
 func Parse(locale, text string, args ...interface{}) (r string, err error) {
 	var data interface{}
 	if len(args) > 0 {
