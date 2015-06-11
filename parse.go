@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"reflect"
+	"strings"
 	"text/template"
 )
 
@@ -42,15 +43,23 @@ func Parse(locale, text string, args ...interface{}) (r string, err error) {
 
 	tmpl := parseTextCache[text]
 	p := parser{locale: locale, data: data}
+	funcs := template.FuncMap{"p": p.parsePlural}
+	for i := range args {
+		arg := args[i]
+		funcs[fmt.Sprintf("cldr_arg_%d", i+1)] = func() interface{} { return arg }
+	}
 	if tmpl == nil {
-		tmpl = template.New("").Funcs(parseFuncMap).Funcs(template.FuncMap{"p": p.parsePlural})
+		for i := range args {
+			text = strings.Replace(text, fmt.Sprintf("{{$%d}}", i+1), fmt.Sprintf("{{cldr_arg_%d}}", i+1), -1)
+		}
+		tmpl = template.New("").Funcs(parseFuncMap).Funcs(funcs)
 		tmpl, err = tmpl.Parse(text)
 		if err != nil {
 			return
 		}
 		parseTextCache[text] = tmpl
 	} else {
-		tmpl = tmpl.Funcs(template.FuncMap{"p": p.parsePlural})
+		tmpl = tmpl.Funcs(funcs)
 	}
 
 	var buf bytes.Buffer
