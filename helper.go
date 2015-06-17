@@ -2,7 +2,7 @@ package cldr
 
 import (
 	"fmt"
-	"text/template"
+	"html/template"
 	"time"
 )
 
