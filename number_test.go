@@ -3,11 +3,11 @@ package cldr_test
 import (
 	"testing"
 
-	"github.com/theplant/i18n/cldr/resources/locales/ar"
-	"github.com/theplant/i18n/cldr/resources/locales/en"
-	"github.com/theplant/i18n/cldr/resources/locales/hi"
-	"github.com/theplant/i18n/cldr/resources/locales/saq"
-	"github.com/theplant/i18n/cldr/resources/locales/uz"
+	"github.com/theplant/cldr/resources/locales/ar"
+	"github.com/theplant/cldr/resources/locales/en"
+	"github.com/theplant/cldr/resources/locales/hi"
+	"github.com/theplant/cldr/resources/locales/saq"
+	"github.com/theplant/cldr/resources/locales/uz"
 	. "launchpad.net/gocheck"
 )
 

@@ -8,7 +8,7 @@ import (
 )
 
 // Standard Formats for Dates, Times & DateTimes
-// These are the options to pass to the FormatDateTime method.
+// These are the options to pass to the Format method.
 const (
 	DateFormatFull = iota
 	DateFormatLong
@@ -82,95 +82,99 @@ type datetimePatternComponent struct {
 }
 
 func (c Calendar) FmtDateFull(t time.Time) (string, error) {
-	return c.FormatDateTime(DateFormatFull, t)
+	return c.Format(t, c.Formats.Date.Full)
 }
 
 func (c Calendar) FmtDateLong(t time.Time) (string, error) {
-	return c.FormatDateTime(DateFormatLong, t)
+	return c.Format(t, c.Formats.Date.Long)
 }
 
 func (c Calendar) FmtDateMedium(t time.Time) (string, error) {
-	return c.FormatDateTime(DateFormatMedium, t)
+	return c.Format(t, c.Formats.Date.Medium)
 }
 
 func (c Calendar) FmtDateShort(t time.Time) (string, error) {
-	return c.FormatDateTime(DateFormatShort, t)
+	return c.Format(t, c.Formats.Date.Short)
 }
 
 func (c Calendar) FmtTimeFull(t time.Time) (string, error) {
-	return c.FormatDateTime(TimeFormatFull, t)
+	return c.Format(t, c.Formats.Time.Full)
 }
 
 func (c Calendar) FmtTimeLong(t time.Time) (string, error) {
-	return c.FormatDateTime(TimeFormatLong, t)
+	return c.Format(t, c.Formats.Time.Long)
 }
 
 func (c Calendar) FmtTimeMedium(t time.Time) (string, error) {
-	return c.FormatDateTime(TimeFormatMedium, t)
+	return c.Format(t, c.Formats.Time.Medium)
 }
 
 func (c Calendar) FmtTimeShort(t time.Time) (string, error) {
-	return c.FormatDateTime(TimeFormatShort, t)
+	return c.Format(t, c.Formats.Time.Short)
 }
 
 func (c Calendar) FmtDateTimeFull(t time.Time) (string, error) {
-	return c.FormatDateTime(DateTimeFormatFull, t)
+	pattern := getDateTimePattern(c.Formats.DateTime.Full, c.Formats.Date.Full, c.Formats.Time.Full)
+	return c.Format(t, pattern)
 }
 
 func (c Calendar) FmtDateTimeLong(t time.Time) (string, error) {
-	return c.FormatDateTime(DateTimeFormatLong, t)
+	pattern := getDateTimePattern(c.Formats.DateTime.Long, c.Formats.Date.Long, c.Formats.Time.Long)
+	return c.Format(t, pattern)
 }
 
 func (c Calendar) FmtDateTimeMedium(t time.Time) (string, error) {
-	return c.FormatDateTime(DateTimeFormatMedium, t)
+	pattern := getDateTimePattern(c.Formats.DateTime.Medium, c.Formats.Date.Medium, c.Formats.Time.Medium)
+	return c.Format(t, pattern)
 }
 
 func (c Calendar) FmtDateTimeShort(t time.Time) (string, error) {
-	return c.FormatDateTime(DateTimeFormatShort, t)
+	pattern := getDateTimePattern(c.Formats.DateTime.Short, c.Formats.Date.Short, c.Formats.Time.Short)
+	return c.Format(t, pattern)
 }
 
-// FormatDateTime takes a time struct and a format and returns a formatted
+// Format takes a time struct and a format and returns a formatted
 // string. Callers should use a DateFormat, TimeFormat, or DateTimeFormat
 // constant.
 // TODO: to remove
-func (c Calendar) FormatDateTime(format int, datetime time.Time) (string, error) {
-	pattern := ""
-	switch format {
-	case DateFormatFull:
-		pattern = c.Formats.Date.Full
-	case DateFormatLong:
-		pattern = c.Formats.Date.Long
-	case DateFormatMedium:
-		pattern = c.Formats.Date.Medium
-	case DateFormatShort:
-		pattern = c.Formats.Date.Short
-	case TimeFormatFull:
-		pattern = c.Formats.Time.Full
-	case TimeFormatLong:
-		pattern = c.Formats.Time.Long
-	case TimeFormatMedium:
-		pattern = c.Formats.Time.Medium
-	case TimeFormatShort:
-		pattern = c.Formats.Time.Short
-	case DateTimeFormatFull:
-		datePattern := strings.Trim(c.Formats.Date.Full, " ,")
-		timePattern := strings.Trim(c.Formats.Time.Full, " ,")
-		pattern = getDateTimePattern(c.Formats.DateTime.Full, datePattern, timePattern)
-	case DateTimeFormatLong:
-		datePattern := strings.Trim(c.Formats.Date.Long, " ,")
-		timePattern := strings.Trim(c.Formats.Time.Long, " ,")
-		pattern = getDateTimePattern(c.Formats.DateTime.Long, datePattern, timePattern)
-	case DateTimeFormatMedium:
-		datePattern := strings.Trim(c.Formats.Date.Medium, " ,")
-		timePattern := strings.Trim(c.Formats.Time.Medium, " ,")
-		pattern = getDateTimePattern(c.Formats.DateTime.Medium, datePattern, timePattern)
-	case DateTimeFormatShort:
-		datePattern := strings.Trim(c.Formats.Date.Short, " ,")
-		timePattern := strings.Trim(c.Formats.Time.Short, " ,")
-		pattern = getDateTimePattern(c.Formats.DateTime.Short, datePattern, timePattern)
-	default:
-		return "", errors.New("unknown datetime format" + pattern[0:1])
-	}
+func (c Calendar) Format(datetime time.Time, pattern string) (string, error) {
+	// pattern := ""
+	// switch format {
+	// case DateFormatFull:
+	// 	pattern = c.Formats.Date.Full
+	// case DateFormatLong:
+	// 	pattern = c.Formats.Date.Long
+	// case DateFormatMedium:
+	// 	pattern = c.Formats.Date.Medium
+	// case DateFormatShort:
+	// 	pattern = c.Formats.Date.Short
+	// case TimeFormatFull:
+	// 	pattern = c.Formats.Time.Full
+	// case TimeFormatLong:
+	// 	pattern = c.Formats.Time.Long
+	// case TimeFormatMedium:
+	// 	pattern = c.Formats.Time.Medium
+	// case TimeFormatShort:
+	// 	pattern = c.Formats.Time.Short
+	// case DateTimeFormatFull:
+	// 	datePattern := strings.Trim(c.Formats.Date.Full, " ,")
+	// 	timePattern := strings.Trim(c.Formats.Time.Full, " ,")
+	// 	pattern = getDateTimePattern(c.Formats.DateTime.Full, datePattern, timePattern)
+	// case DateTimeFormatLong:
+	// 	datePattern := strings.Trim(c.Formats.Date.Long, " ,")
+	// 	timePattern := strings.Trim(c.Formats.Time.Long, " ,")
+	// 	pattern = getDateTimePattern(c.Formats.DateTime.Long, datePattern, timePattern)
+	// case DateTimeFormatMedium:
+	// 	datePattern := strings.Trim(c.Formats.Date.Medium, " ,")
+	// 	timePattern := strings.Trim(c.Formats.Time.Medium, " ,")
+	// 	pattern = getDateTimePattern(c.Formats.DateTime.Medium, datePattern, timePattern)
+	// case DateTimeFormatShort:
+	// 	datePattern := strings.Trim(c.Formats.Date.Short, " ,")
+	// 	timePattern := strings.Trim(c.Formats.Time.Short, " ,")
+	// 	pattern = getDateTimePattern(c.Formats.DateTime.Short, datePattern, timePattern)
+	// default:
+	// 	return "", errors.New("unknown datetime format" + pattern[0:1])
+	// }
 
 	parsed, err := c.parseDateTimeFormat(pattern)
 	if err != nil {
