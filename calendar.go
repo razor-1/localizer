@@ -136,46 +136,7 @@ func (c Calendar) FmtDateTimeShort(t time.Time) (string, error) {
 // Format takes a time struct and a format and returns a formatted
 // string. Callers should use a DateFormat, TimeFormat, or DateTimeFormat
 // constant.
-// TODO: to remove
 func (c Calendar) Format(datetime time.Time, pattern string) (string, error) {
-	// pattern := ""
-	// switch format {
-	// case DateFormatFull:
-	// 	pattern = c.Formats.Date.Full
-	// case DateFormatLong:
-	// 	pattern = c.Formats.Date.Long
-	// case DateFormatMedium:
-	// 	pattern = c.Formats.Date.Medium
-	// case DateFormatShort:
-	// 	pattern = c.Formats.Date.Short
-	// case TimeFormatFull:
-	// 	pattern = c.Formats.Time.Full
-	// case TimeFormatLong:
-	// 	pattern = c.Formats.Time.Long
-	// case TimeFormatMedium:
-	// 	pattern = c.Formats.Time.Medium
-	// case TimeFormatShort:
-	// 	pattern = c.Formats.Time.Short
-	// case DateTimeFormatFull:
-	// 	datePattern := strings.Trim(c.Formats.Date.Full, " ,")
-	// 	timePattern := strings.Trim(c.Formats.Time.Full, " ,")
-	// 	pattern = getDateTimePattern(c.Formats.DateTime.Full, datePattern, timePattern)
-	// case DateTimeFormatLong:
-	// 	datePattern := strings.Trim(c.Formats.Date.Long, " ,")
-	// 	timePattern := strings.Trim(c.Formats.Time.Long, " ,")
-	// 	pattern = getDateTimePattern(c.Formats.DateTime.Long, datePattern, timePattern)
-	// case DateTimeFormatMedium:
-	// 	datePattern := strings.Trim(c.Formats.Date.Medium, " ,")
-	// 	timePattern := strings.Trim(c.Formats.Time.Medium, " ,")
-	// 	pattern = getDateTimePattern(c.Formats.DateTime.Medium, datePattern, timePattern)
-	// case DateTimeFormatShort:
-	// 	datePattern := strings.Trim(c.Formats.Date.Short, " ,")
-	// 	timePattern := strings.Trim(c.Formats.Time.Short, " ,")
-	// 	pattern = getDateTimePattern(c.Formats.DateTime.Short, datePattern, timePattern)
-	// default:
-	// 	return "", errors.New("unknown datetime format" + pattern[0:1])
-	// }
-
 	parsed, err := c.parseDateTimeFormat(pattern)
 	if err != nil {
 		return "", err

@@ -11,6 +11,7 @@ import (
 
 var (
 	dateTimeString = "Jan 2, 2006 at 3:04:05pm"
+	enLocale, _    = cldr.GetLocale("en")
 )
 
 type CalendarSuite struct {
@@ -26,7 +27,6 @@ func (s *CalendarSuite) TestFormatDateTime(c *C) {
 	datetime, _ := time.Parse(dateTimeString, dateTimeString)
 
 	// test the public method
-	enLocale, _ := cldr.GetLocale("en")
 	dFull, err := enLocale.Calendar.FmtDateFull(datetime)
 	c.Check(err, IsNil)
 
@@ -321,124 +321,124 @@ func (s *CalendarSuite) TestFormatDateTime(c *C) {
 // func (s *CalendarSuite) TestFormatDateTimeComponent(c *C) {
 // 	datetime, _ := time.Parse(dateTimeString, dateTimeString)
 
-// 	str, err := formatDateTimeComponent("en", datetime, "G")
+// 	str, err := enLocale.Calendar.formatDateTimeComponent(datetime, "G")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "y")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "y")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "2006")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "yy")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "yy")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "06")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "yyyy")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "yyyy")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "2006")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "yyyyyy")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "yyyyyy")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "M")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "M")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "1")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "MM")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "MM")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "01")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "MMM")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "MMM")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "Jan")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "MMMM")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "MMMM")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "January")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "MMMMM")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "MMMMM")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "J")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "MMMMMM")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "MMMMMM")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "E")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "E")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "Monday")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "EE")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "EE")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "Mo")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "EEE")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "EEE")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "Mon")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "EEEE")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "EEEE")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "Monday")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "EEEEE")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "EEEEE")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "M")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "EEEEEE")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "EEEEEE")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "d")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "d")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "2")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "dd")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "dd")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "02")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "dddddd")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "dddddd")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "h")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "h")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "3")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "hh")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "hh")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "03")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "hhhhhh")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "hhhhhh")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "H")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "H")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "15")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "HH")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "HH")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "15")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "HHHHHH")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "HHHHHH")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "m")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "m")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "4")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "mm")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "mm")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "04")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "mmmmmm")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "mmmmmm")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "s")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "s")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "5")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "ss")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "ss")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "05")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "ssssss")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "ssssss")
 // 	c.Check(err, NotNil)
 
 // 	abbr := tEn.rules.DateTime.FormatNames.Periods.Abbreviated.PM
@@ -447,38 +447,38 @@ func (s *CalendarSuite) TestFormatDateTime(c *C) {
 // 	tEn.rules.DateTime.FormatNames.Periods.Abbreviated.PM = "abbr"
 // 	tEn.rules.DateTime.FormatNames.Periods.Narrow.PM = "narrow"
 // 	tEn.rules.DateTime.FormatNames.Periods.Wide.PM = "wide"
-// 	str, err = formatDateTimeComponent("en", datetime, "a")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "a")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "wide")
-// 	str, err = formatDateTimeComponent("en", datetime, "aaa")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "aaa")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "abbr")
-// 	str, err = formatDateTimeComponent("en", datetime, "aaaa")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "aaaa")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "wide")
-// 	str, err = formatDateTimeComponent("en", datetime, "aaaaa")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "aaaaa")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "narrow")
 // 	tEn.rules.DateTime.FormatNames.Periods.Abbreviated.PM = abbr
 // 	tEn.rules.DateTime.FormatNames.Periods.Narrow.PM = narrow
 // 	tEn.rules.DateTime.FormatNames.Periods.Wide.PM = wide
 
-// 	_, err = formatDateTimeComponent("en", datetime, "aaaaaa")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "aaaaaa")
 // 	c.Check(err, NotNil)
 
-// 	str, err = formatDateTimeComponent("en", datetime, "Q")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "Q")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "z")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "z")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "")
 
-// 	str, err = formatDateTimeComponent("en", datetime, "v")
+// 	str, err = enLocale.Calendar.formatDateTimeComponent(datetime, "v")
 // 	c.Check(err, IsNil)
 // 	c.Check(str, Equals, "")
 
-// 	_, err = formatDateTimeComponent("en", datetime, "%")
+// 	_, err = enLocale.Calendar.formatDateTimeComponent(datetime, "%")
 // 	c.Check(err, NotNil)
 // }
 
