@@ -39,13 +39,15 @@ func TestParse(t *testing.T) {
 			want:   "string1 string2 string1",
 		},
 	}
-	for _, c := range cases {
-		got, err := cldr.Parse(c.locale, c.text, c.data...)
-		if err != nil {
-			t.Error(err)
-		}
-		if got != c.want {
-			t.Errorf("got %q; want %q", got, c.want)
+	for i := 0; i < 2; i++ {
+		for _, c := range cases {
+			got, err := cldr.Parse(c.locale, c.text, c.data...)
+			if err != nil {
+				t.Error(err)
+			}
+			if got != c.want {
+				t.Errorf("got %q; want %q", got, c.want)
+			}
 		}
 	}
 }
