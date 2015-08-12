@@ -55,6 +55,11 @@ func (s *NumberSuite) TestFmtCurrency(c *C) {
 	cur, err = ar.Locale.Number.FmtCurrency("USD", -12345.6789)
 	c.Check(err, IsNil)
 	c.Check(cur, Equals, "US$ 12,345.68-")
+
+	// And one more for with some unusual symbols for good measure
+	cur, err = en.Locale.Number.FmtCurrency("USD", 0.0084)
+	c.Check(err, IsNil)
+	c.Check(cur, Equals, "$0.01")
 }
 
 func (s *NumberSuite) TestFmtCurrencyWhole(c *C) {

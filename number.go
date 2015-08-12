@@ -327,7 +327,11 @@ func numberRound(number float64, decimals int) string {
 		multiplier := math.Pow(float64(10), float64(decimals))
 		multiplied := strconv.FormatFloat(math.Ceil(number*multiplier), 'f', 0, 64)
 
-		str = multiplied[:len(multiplied)-decimals] + "." + multiplied[len(multiplied)-decimals:]
+		if len(multiplied) > decimals {
+			str = multiplied[:len(multiplied)-decimals] + "." + multiplied[len(multiplied)-decimals:]
+		} else {
+			str = "0." + strings.Repeat("0", decimals-len(multiplied)) + multiplied
+		}
 	}
 
 	str = strings.TrimRight(str, "0")
