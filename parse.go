@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"reflect"
 	"strings"
+	"sync"
 	"text/template"
 )
 
@@ -18,6 +19,7 @@ type pluralOther string
 // type pluralOther string
 
 var parseTextCache = make(map[string]*template.Template)
+var mutex sync.RWMutex
 var parseFuncMap = template.FuncMap{
 	"zero":  toPluralZero,
 	"one":   toPluralOne,
@@ -41,7 +43,10 @@ func Parse(locale, text string, args ...interface{}) (r string, err error) {
 		data = args[0]
 	}
 
+	mutex.RLock()
 	tmpl := parseTextCache[text]
+	mutex.RUnlock()
+
 	p := parser{locale: locale, data: data}
 	funcs := template.FuncMap{"p": p.parsePlural}
 	for i := range args {
@@ -57,7 +62,9 @@ func Parse(locale, text string, args ...interface{}) (r string, err error) {
 		if err != nil {
 			return
 		}
+		mutex.Lock()
 		parseTextCache[text] = tmpl
+		mutex.Unlock()
 	} else {
 		tmpl = tmpl.Funcs(funcs)
 	}
