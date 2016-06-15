@@ -8,7 +8,7 @@ import (
 	"github.com/theplant/cldr/resources/locales/hi"
 	"github.com/theplant/cldr/resources/locales/saq"
 	"github.com/theplant/cldr/resources/locales/uz"
-	. "launchpad.net/gocheck"
+	. "gopkg.in/check.v1"
 )
 
 // passes control of tests off to go-check

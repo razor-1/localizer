@@ -4,7 +4,7 @@ import (
 	"time"
 
 	_ "github.com/theplant/cldr/resources/locales"
-	. "launchpad.net/gocheck"
+	. "gopkg.in/check.v1"
 
 	"github.com/theplant/cldr"
 )
