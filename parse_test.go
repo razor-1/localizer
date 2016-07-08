@@ -7,6 +7,12 @@ import (
 	"testing"
 )
 
+type testCart struct {
+	Name          string
+	Items         []string
+	NumberOfItems int32
+}
+
 func TestParse(t *testing.T) {
 	cases := []struct {
 		locale string
@@ -31,6 +37,34 @@ func TestParse(t *testing.T) {
 			text:   `{{p "Count" (one "{{.Count}} item") (other "{{.Count}} items in Your Cart")}} in Your Cart; {{p "Count2" (one "{{.Count2}} item") (other "{{.Count2}} items in Your Cart")}} in Your Cart`,
 			data:   []interface{}{map[string]int{"Count": 2, "Count2": 1}},
 			want:   "2 items in Your Cart in Your Cart; 1 item in Your Cart",
+		},
+		{
+			locale: "en",
+			text:   `{{p "Cart.Items" (one "1 item") (other "{{len .Cart.Items}} items")}} in your cart; {{p "Cart.NumberOfItems" (one "1 item") (other "{{.Cart.NumberOfItems}} items")}} in your cart.`,
+			data: []interface{}{map[string]interface{}{"Cart": struct {
+				Name          string
+				Items         []string
+				NumberOfItems int32
+			}{Name: "Mr Someone", Items: []string{"Item 1", "Item 2"}, NumberOfItems: 4}}},
+			want: "2 items in your cart; 4 items in your cart.",
+		},
+		{
+			locale: "en",
+			text:   `{{p "Cart2.Items" (one "1 item") (other "{{len .Cart2.Items}} items")}} in your cart; {{p "Cart2.NumberOfItems" (one "1 item") (other "{{.Cart2.NumberOfItems}} items")}} in your cart.`,
+			data:   []interface{}{map[string]interface{}{"Cart2": &testCart{Name: "Test cart", Items: []string{"Item 3", "Item 4", "Item 5"}, NumberOfItems: 6}}},
+			want:   "3 items in your cart; 6 items in your cart.",
+		},
+		{
+			locale: "en",
+			text:   `{{p "." (one "1 item") (other "{{.}} items")}} in your cart.`,
+			data:   []interface{}{4},
+			want:   "4 items in your cart.",
+		},
+		{
+			locale: "en",
+			text:   `{{p "." (one "1 item") (other "{{len .}} items")}} in your cart.`,
+			data:   []interface{}{[]string{"Item 1", "Item 2"}},
+			want:   "2 items in your cart.",
 		},
 		{
 			locale: "en",
