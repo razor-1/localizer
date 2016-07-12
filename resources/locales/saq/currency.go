@@ -51,7 +51,7 @@ var currencies = []cldr.Currency{
 	{Currency: "TND", DisplayName: "Njilingi eel Tunisia", Symbol: ""},
 	{Currency: "TZS", DisplayName: "Njilingi eel Tanzania", Symbol: ""},
 	{Currency: "UGX", DisplayName: "Njilingi eel Uganda", Symbol: ""},
-	{Currency: "USD", DisplayName: "Dola eel Marekani", Symbol: ""},
+	{Currency: "USD", DisplayName: "Dola eel Marekani", Symbol: "US$"},
 	{Currency: "XAF", DisplayName: "Njilingi eel CFA BEAC", Symbol: ""},
 	{Currency: "XOF", DisplayName: "Njilingi eel CFA BCEAO", Symbol: ""},
 	{Currency: "ZAR", DisplayName: "Njilingi eel Afrika Kusini", Symbol: ""},
