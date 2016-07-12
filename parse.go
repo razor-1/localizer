@@ -116,21 +116,44 @@ func (p parser) parsePlural(field string, rules ...interface{}) (r string, err e
 	return
 }
 
-func getCount(v interface{}, field string) (count interface{}, has bool) {
+func getCount(v interface{}, field string) (interface{}, bool) {
+	if len(field) == 0 {
+		return nil, false
+	}
+
+	if field != "." {
+		fieldParts := strings.Split(field, ".")
+		fieldPartsLen := len(fieldParts)
+		for i := 0; i < fieldPartsLen; i++ {
+			fieldPart := fieldParts[i]
+			rv := reflect.Indirect(reflect.ValueOf(v))
+			switch rv.Kind() {
+			case reflect.Struct:
+				f := rv.FieldByName(fieldPart)
+				if f.IsValid() {
+					v = f.Interface()
+					continue
+				}
+				return nil, false
+			case reflect.Map:
+				f := rv.MapIndex(reflect.ValueOf(fieldPart))
+				if f.IsValid() {
+					v = f.Interface()
+					continue
+				}
+				return nil, false
+			case reflect.Invalid:
+				return nil, false
+			}
+		}
+	}
+
 	rv := reflect.ValueOf(v)
 	switch rv.Kind() {
-	case reflect.Struct:
-		f := rv.FieldByName(field)
-		if has = f.IsValid(); has {
-			count = f.Interface()
-		}
-		return
-	case reflect.Map:
-		f := rv.MapIndex(reflect.ValueOf(field))
-		if has = f.IsValid(); has {
-			count = f.Interface()
-		}
-		return
+	case reflect.Array, reflect.Chan, reflect.Slice:
+		v = rv.Len()
+	case reflect.Map, reflect.Struct:
+		return nil, false
 	}
-	return
+	return v, true
 }

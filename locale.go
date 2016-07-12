@@ -98,6 +98,14 @@ func RegisterLocale(loc *Locale) {
 	}
 }
 
+// RegisterLocales registers multiple locales in one go.
+func RegisterLocales(locs ...*Locale) {
+	for _, loc := range locs {
+		RegisterLocale(loc)
+	}
+}
+
+// GetLocale returns a pointer to an existing locale object and a boolean whether the locale exists.
 func GetLocale(locale string) (*Locale, bool) {
 	l, ok := locales[locale]
 	return l, ok
