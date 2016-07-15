@@ -25,14 +25,6 @@ type numberFormat struct {
 }
 
 var (
-	// numberFormats keeps a copy of all numberFormat instances that have been
-	// loaded before, to prevent parsing a single number format string multiple
-	// times. There is vey little danger of this list consuming too much memory,
-	// since the data for each of these is pretty small in size, and the same
-	// formats are used by multiple locales.
-	numberFormats           = map[string]*numberFormat{}
-	numberFormatsNoDecimals = map[string]*numberFormat{}
-
 	// prefixSuffixRegex is a regular expression that is used to parse number
 	// formats
 	prefixSuffixRegex = regexp.MustCompile(`(.*?)[#,\.0]+(.*)`)
@@ -92,14 +84,6 @@ func (n Number) FmtPercent(number float64) string {
 
 // parseFormat takes a format string and returns a numberFormat instance
 func (n Number) parseFormat(pattern string, includeDecimalDigits bool) *numberFormat {
-	// processed := false
-	// if includeDecimalDigits {
-	// 	_, processed = numberFormats[pattern]
-	// } else {
-	// 	_, processed = numberFormatsNoDecimals[pattern]
-	// }
-
-	// if !processed {
 	format := new(numberFormat)
 	patterns := strings.Split(pattern, ";")
 
@@ -177,21 +161,12 @@ func (n Number) parseFormat(pattern string, includeDecimalDigits bool) *numberFo
 		}
 	}
 
-	if includeDecimalDigits {
-		numberFormats[pattern] = format
-	} else {
+	if !includeDecimalDigits {
 		format.maxDecimalDigits = 0
 		format.minDecimalDigits = 0
-		numberFormatsNoDecimals[pattern] = format
 	}
 
-	// }
-
-	if includeDecimalDigits {
-		return numberFormats[pattern]
-	}
-
-	return numberFormatsNoDecimals[pattern]
+	return format
 }
 
 // formatNumber takes an arbitrary numberFormat and a number and applies that
