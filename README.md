@@ -8,7 +8,7 @@ cldr is a golang library using Common Locale Data Repository to format dates, pl
 
 cldr embeds CLDR data in pure go and it doesn't import all those locale data by default. If you are using specific locale data, you can import that package as bellow:
 
-```
+```go
 package main
 
 import (
@@ -31,13 +31,13 @@ More API could be found [here](https://godoc.org/github.com/theplant/cldr).
 
 # How to add locales
 
-```
+```go
 cldr.RegisterLocale(Locale{...})
 ```
 
 # How to override default locales
 
-```
+```go
 // solution 1
 // using the same locale name
 
