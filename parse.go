@@ -3,10 +3,10 @@ package cldr
 import (
 	"bytes"
 	"fmt"
+	"html/template"
 	"reflect"
 	"strings"
 	"sync"
-	"text/template"
 )
 
 type pluralZero string
