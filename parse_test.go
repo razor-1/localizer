@@ -1,6 +1,8 @@
 package cldr_test
 
 import (
+	"html/template"
+
 	"github.com/theplant/cldr"
 	_ "github.com/theplant/cldr/resources/locales/en"
 
@@ -47,6 +49,18 @@ func TestParse(t *testing.T) {
 				NumberOfItems int32
 			}{Name: "Mr Someone", Items: []string{"Item 1", "Item 2"}, NumberOfItems: 4}}},
 			want: "2 items in your cart; 4 items in your cart.",
+		},
+		{
+			locale: "en",
+			text:   `<div>Your search "{{ .Keyword }}" returned {{ .Count }} results</div>`,
+			data: []interface{}{struct {
+				Keyword string
+				Count   template.HTML
+			}{
+				Keyword: `<img src="https://getqor.com/imageproxy?link=error" onerror="alert('hello')" >`,
+				Count:   template.HTML("<b>1</b>"),
+			}},
+			want: "<div>Your search \"&lt;img src=&#34;https://getqor.com/imageproxy?link=error&#34; onerror=&#34;alert(&#39;hello&#39;)&#34; &gt;\" returned <b>1</b> results</div>",
 		},
 		{
 			locale: "en",
