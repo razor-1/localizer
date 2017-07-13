@@ -12,7 +12,7 @@ import (
 
 	"github.com/kr/pretty"
 	i18n "github.com/theplant/cldr"
-	"golang.org/x/text/cldr"
+	"golang.org/x/text/unicode/cldr"
 )
 
 // numbers:
