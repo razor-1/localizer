@@ -17,22 +17,19 @@ import (
 )
 
 type Locale struct {
-	Tag                language.Tag
-	Number             cldr.Number
-	Calendar           cldr.Calendar
-	Plural             cldr.Plural
-	catalog            *catalog.Builder
-	translations       map[string]*store.Translation
-	trMutex            sync.RWMutex
-	pluralTranslations map[string]*store.Translation
-	plMutex            sync.RWMutex
+	Tag          language.Tag
+	Number       cldr.Number
+	Calendar     cldr.Calendar
+	Plural       cldr.Plural
+	catalog      *catalog.Builder
+	translations map[string]*store.Translation
+	trMutex      sync.RWMutex
 }
 
 var llMutex sync.RWMutex
 var loadedLocales = make(map[language.Tag]*Locale)
 
-//NewLocale instantiates a new Locale for the supplied language tag, and adds the default domain from the global
-//LocaleConfig.
+//NewLocale instantiates a new Locale for the supplied language tag.
 func NewLocale(tag language.Tag) (loc *Locale, err error) {
 	if loaded := GetLocale(tag); loaded != nil {
 		return loaded, nil
@@ -42,38 +39,52 @@ func NewLocale(tag language.Tag) (loc *Locale, err error) {
 		return
 	}
 	l := Locale{
-		Tag:                tag,
-		Number:             localeData.Number,
-		Calendar:           localeData.Calendar,
-		Plural:             localeData.Plural,
-		catalog:            catalog.NewBuilder(),
-		pluralTranslations: make(map[string]*store.Translation),
-		translations:       make(map[string]*store.Translation),
+		Tag:          tag,
+		Number:       localeData.Number,
+		Calendar:     localeData.Calendar,
+		Plural:       localeData.Plural,
+		catalog:      catalog.NewBuilder(),
+		translations: make(map[string]*store.Translation),
 	}
 
 	llMutex.Lock()
+	defer llMutex.Unlock()
 	loadedLocales[tag] = &l
-	llMutex.Unlock()
 
 	return &l, nil
+}
+
+// GetLocale returns a pointer to an existing, already-loaded locale (or nil if if doesn't exist)
+func GetLocale(tag language.Tag) *Locale {
+	llMutex.RLock()
+	defer llMutex.RUnlock()
+	return loadedLocales[tag]
 }
 
 type FmtParams map[string]interface{}
 
 var namedParameter = regexp.MustCompile(`%\((\w+?)\)(\S)?`)
 
-//NamedParameters does string formatting on python-style format strings like "Hello %(name)s"
+//NamedParameters does string formatting on python-style format strings like "Hello %(name)s".
 func NamedParameters(format string, params FmtParams) string {
-	args := make([]string, len(params)*2)
-	i := 0
 	//if we have something like "%(name)" without a trailing format specifier, use defaultFormat
 	const defaultFormat = "s"
+
 	matches := namedParameter.FindAllStringSubmatch(format, -1)
+	found := make(map[string]bool, len(matches))
+	args := make([]string, len(matches)*2)
+	i := 0
+
 	for _, match := range matches {
 		param, ok := params[match[1]]
 		if !ok {
 			continue
 		}
+		if _, ok := found[match[0]]; ok {
+			// same name multiple times in string. replacer will replace all of them
+			continue
+		}
+		found[match[0]] = true
 		args[i] = match[0]
 		fmtStr := "%"
 		if len(match) < 3 || match[2] == "" {
@@ -105,20 +116,16 @@ func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 	return nil, errors.New("tag could not match a known locale")
 }
 
+//Load retrieves all translations from the supplied store.TranslationStore and prepares them for use in this Locale.
 func (l *Locale) Load(source store.TranslationStore) error {
 	lc, err := source.GetTranslations(l.Tag)
 	if err != nil {
 		return err
 	}
 
-	l.plMutex.Lock()
 	l.trMutex.Lock()
-	defer l.plMutex.Unlock()
 	defer l.trMutex.Unlock()
 	for msgID, msg := range lc.Translations {
-		if msg.PluralID != "" {
-			l.pluralTranslations[msg.PluralID] = msg
-		}
 		_ = l.catalog.SetString(l.Tag, msgID, msg.String)
 		l.translations[msgID] = msg
 	}
@@ -126,6 +133,7 @@ func (l *Locale) Load(source store.TranslationStore) error {
 	return nil
 }
 
+//Get returns the raw translated string from the catalog, with no formatting.
 func (l *Locale) Get(key string) string {
 	l.trMutex.RLock()
 	defer l.trMutex.RUnlock()
@@ -136,31 +144,14 @@ func (l *Locale) Get(key string) string {
 	return key
 }
 
-//AddDomain adds a domain of translations to the locale and sets them in the catalog.
-//func (l *Locale) AddDomain(domain string) error {
-//	err := l.gotextLocale.AddDomain(domain)
-//	if err != nil {
-//		return err
-//	}
-//
-//	for msgID, msg := range l.GetAllTranslations() {
-//		err := l.catalog.SetString(l.Tag, msgID, msg)
-//		if err != nil {
-//			return err
-//		}
-//	}
-//
-//	return nil
-//}
-
 //NewPrinter creates a message.Printer for the Locale
 func (l *Locale) NewPrinter() *message.Printer {
 	return message.NewPrinter(l.Tag, message.Catalog(l.catalog))
 }
 
 //GetPlural determines which plural form should be used for the supplied number. number can be an int type (including
-//int64) or a float formatted as a string. It then determines which gettext index number should be used for this
-//plural form and retrieves it from the catalog.
+//int64) or a float formatted as a string. It then determines which plural form should be used by calling the cldr
+//plural function, and returns the corresponding plural translation, formatted with the optional vars.
 func (l *Locale) GetPlural(pluralID string, number interface{}, vars ...interface{}) string {
 	ops, err := cldr.NewOperands(number)
 	if err != nil {
@@ -181,11 +172,4 @@ func (l *Locale) GetPlural(pluralID string, number interface{}, vars ...interfac
 		return fmt.Sprintf(msg, vars...)
 	}
 	return msg
-}
-
-// GetLocale returns a pointer to an exiting locale object (or nil if if doesn't exist)
-func GetLocale(tag language.Tag) *Locale {
-	llMutex.RLock()
-	defer llMutex.RUnlock()
-	return loadedLocales[tag]
 }
