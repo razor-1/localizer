@@ -2,7 +2,7 @@ package store
 
 import "golang.org/x/text/language"
 
-//LocaleCatalog represents the strings (usually translated) that are provided by a TranslationStore
+//LocaleCatalog represents the translations provided by a TranslationStore
 type LocaleCatalog struct {
 	//Tag is which locale was actually used to find these translations (e.g. I asked for en-US and am getting en)
 	Tag language.Tag
