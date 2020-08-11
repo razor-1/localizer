@@ -12,11 +12,17 @@ github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZN
 github.com/razor-1/cldr v0.1.3/go.mod h1:6C9WeT7JjD/8Z494XzARpRXbR37MBvEaPD3Rygi1HL8=
 github.com/razor-1/cldr v0.1.4 h1:9uJJXpbNqHYMNZ2SiBDjbp/wh6LhhNgt5ELuUAlfYms=
 github.com/razor-1/cldr v0.1.4/go.mod h1:YaS66Z/d/7volCJ74xszngTOni793xWFQSPo7mXk/hg=
+github.com/razor-1/cldr v0.1.6 h1:0pv3JBq531Uw/2u6eriyc2GkvN7UrPa7raxuH3hftI0=
+github.com/razor-1/cldr v0.1.6/go.mod h1:b4I4yHch3CpqEq0OFi21OdhTvr5jSezgnlA9JcbhDHk=
+github.com/razor-1/cldr/resources v0.1.6 h1:CNTqVNuH0eskv/kfwKJBgbrv8HZATBU0wJXb/q4Y/Jc=
+github.com/razor-1/cldr/resources v0.1.6/go.mod h1:IoMvgvvsEMQHQw7Bq7gpFa0vYgoM+tZRqcT7y+Ldxzo=
 github.com/razor-1/cldr/resources/currency v0.1.0/go.mod h1:2w6OlImUjqkHrExnG6V5/UltqFdE6oQ0ZmEBZvgbfjw=
 github.com/razor-1/cldr/resources/currency v0.1.1 h1:0JaESp1ztMUUwNKgsVKEmo46wdzfm6sfVbwJmIDkX1Y=
 github.com/razor-1/cldr/resources/currency v0.1.1/go.mod h1:2w6OlImUjqkHrExnG6V5/UltqFdE6oQ0ZmEBZvgbfjw=
 github.com/razor-1/cldr/resources/locales v0.1.3 h1:IVDAMcc5Du3Va6rafeKBD72ul7+itUWwtvZ9S30Isq8=
 github.com/razor-1/cldr/resources/locales v0.1.3/go.mod h1:cfxDjIf8DGsASB8NziSeRjSeEmKmK9xeRFoaNYiic4c=
+github.com/razor-1/cldr/resources/locales v0.1.4 h1:JyfxbiybF6z1TcibieQOJBNV39+zRuktlo4I2iGaDrA=
+github.com/razor-1/cldr/resources/locales v0.1.4/go.mod h1:iwIxl3t64ysK73u9VlZlDVmfEYQQKgjbMiEEwxP11bg=
 github.com/razor-1/localizer/store v0.0.1 h1:wp9wL/p/B8ibY9YX7PaXn0hyMqehpn/XvmyrVJdPSas=
 github.com/razor-1/localizer/store v0.0.1/go.mod h1:kz3mEM0WXaB66qVUsCrGrPtiLxTxjloZqNxVrQAJxJo=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=

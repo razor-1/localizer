@@ -8,7 +8,7 @@ import (
 	"sync"
 
 	"github.com/razor-1/cldr"
-	"github.com/razor-1/cldr/resources/locales"
+	"github.com/razor-1/cldr/resources"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 	"golang.org/x/text/message/catalog"
@@ -104,8 +104,8 @@ func NamedParameters(format string, params FmtParams) string {
 func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 	//find the closest valid language for the supplied tag
 	for {
-		if loc, ok := locales.LocaleData[tag]; ok {
-			return loc(), nil
+		if loc, err := resources.GetLocale(tag); err == nil {
+			return loc, nil
 		}
 		tag = tag.Parent()
 		if tag.IsRoot() {
