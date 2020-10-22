@@ -29,7 +29,9 @@ type Locale struct {
 var llMutex sync.RWMutex
 var loadedLocales = make(map[language.Tag]*Locale)
 
-//NewLocale instantiates a new Locale for the supplied language tag.
+//NewLocale instantiates a new Locale for the supplied language tag. It does not load any translations, so it's
+//useful when you only need to use the CLDR data (number/calendar etc). Use NewLocaleWithStore to load translations
+//at initialization time, or call Load on the Locale returned by this function.
 func NewLocale(tag language.Tag) (loc *Locale, err error) {
 	if loaded := GetLocale(tag); loaded != nil {
 		return loaded, nil
@@ -52,6 +54,18 @@ func NewLocale(tag language.Tag) (loc *Locale, err error) {
 	loadedLocales[tag] = &l
 
 	return &l, nil
+}
+
+//NewLocaleWithStore instantiates a new Locale for the supplied language tag. It loads the translations from the source
+//store.TranslationStore. Use this if you know you want your Locale to be populated with translations.
+func NewLocaleWithStore(tag language.Tag, source store.TranslationStore) (loc *Locale, err error) {
+	loc, err = NewLocale(tag)
+	if err != nil {
+		return
+	}
+
+	err = loc.Load(source)
+	return
 }
 
 // GetLocale returns a pointer to an existing, already-loaded locale (or nil if if doesn't exist)
@@ -142,6 +156,21 @@ func (l *Locale) Get(key string) string {
 	}
 
 	return key
+}
+
+//GetTranslations returns the entire catalog of translations currently loaded for this locale. This allows for
+//enumeration of the catalog. Note that it returns a copy so that the internal store can continue to be protected
+//by mutexes.
+func (l *Locale) GetTranslations() map[string]store.Translation {
+	l.trMutex.RLock()
+	defer l.trMutex.RUnlock()
+
+	trans := make(map[string]store.Translation, len(l.translations))
+	for k, v := range l.translations {
+		trans[k] = *v
+	}
+
+	return trans
 }
 
 //NewPrinter creates a message.Printer for the Locale
