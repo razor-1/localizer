@@ -48,7 +48,7 @@ func main() {
 
 As you can see, the locale object makes it easy to interact with CLDR data. What about translated strings?
 ```go
-gotl := gotext.NewLocale("/Users/jon/projects/hourglass/hourglass-py/hourglass/translations", "es")
+gotl := gotext.NewLocale("translations", "es")
 gotl.AddDomain("messages")
 
 l, err := localizer.NewLocaleWithStore(language.Spanish, gotl)
