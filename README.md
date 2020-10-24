@@ -14,12 +14,12 @@ as much as possible, since it takes care of some difficult tasks.
 ```go
 import (
     "fmt"
-	"time"
+    "time"
 
-	"github.com/razor-1/cldr/resources/currency"
-	"golang.org/x/text/language"
+    "github.com/razor-1/cldr/resources/currency"
+    "golang.org/x/text/language"
 
-	"github.com/razor-1/localizer"
+    "github.com/razor-1/localizer"
 )
 
 func main() {
@@ -27,11 +27,13 @@ func main() {
     if err != nil {
         panic(err)
     }
+
     jan2020 := time.Date(2020, 1, 1, 0, 0, 0, 0, time.UTC)
     month, err := l.Calendar.Format(jan2020, "MMMM")
     if err != nil {
         panic(err)
     }
+
     fmt.Println(month) // "enero"
     fmt.Println(l.Calendar.FormatNames.Months.Wide.Jan) // "enero"
     fmt.Println(l.FmtNumber(10000.12)) // "100.000,12"
@@ -39,6 +41,7 @@ func main() {
     if err != nil {
         panic(err)
     }
+
     fmt.Println(cur) // "10.000,12 US$"
 }
 ```
