@@ -13,7 +13,7 @@ as much as possible, since it takes care of some difficult tasks.
 ## Getting Started: Example
 ```go
 import (
-	"fmt"
+    "fmt"
 	"time"
 
 	"github.com/razor-1/cldr/resources/currency"
@@ -23,39 +23,39 @@ import (
 )
 
 func main() {
-	l, err := localizer.NewLocale(language.Spanish)
-	if err != nil {
-		panic(err)
-	}
-	jan2020 := time.Date(2020, 1, 1, 0, 0, 0, 0, time.UTC)
-	month, err := l.Calendar.Format(jan2020, "MMMM")
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(month) // "enero"
-	fmt.Println(l.Calendar.FormatNames.Months.Wide.Jan) // "enero"
-	fmt.Println(l.FmtNumber(10000.12)) // "100.000,12"
-	cur, err := l.FmtCurrency(currency.USD, 10000.12)
-	if err != nil {
-		panic(err)
-	}
-	fmt.Println(cur) // "10.000,12 US$"
+    l, err := localizer.NewLocale(language.Spanish)
+    if err != nil {
+        panic(err)
+    }
+    jan2020 := time.Date(2020, 1, 1, 0, 0, 0, 0, time.UTC)
+    month, err := l.Calendar.Format(jan2020, "MMMM")
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(month) // "enero"
+    fmt.Println(l.Calendar.FormatNames.Months.Wide.Jan) // "enero"
+    fmt.Println(l.FmtNumber(10000.12)) // "100.000,12"
+    cur, err := l.FmtCurrency(currency.USD, 10000.12)
+    if err != nil {
+        panic(err)
+    }
+    fmt.Println(cur) // "10.000,12 US$"
 }
 ```
 
 As you can see, the locale object makes it easy to interact with CLDR data. What about translated strings?
 ```go
-	gotl := gotext.NewLocale("/Users/jon/projects/hourglass/hourglass-py/hourglass/translations", "es")
-	gotl.AddDomain("messages")
+gotl := gotext.NewLocale("/Users/jon/projects/hourglass/hourglass-py/hourglass/translations", "es")
+gotl.AddDomain("messages")
 
-	l, err := localizer.NewLocaleWithStore(language.Spanish, gotl)
-	if err != nil {
-		panic(err)
-    }
+l, err := localizer.NewLocaleWithStore(language.Spanish, gotl)
+if err != nil {
+	panic(err)
+}
     
-    fmt.Println(l.Get("Login")) //"Iniciar sesión"
-    fmt.Println(l.GetPlural("%d hours", 1, 1)) //"1 hora" 
-    fmt.Println(l.GetPlural("%d hours", 2, 2)) //"2 horas"
+fmt.Println(l.Get("Login")) //"Iniciar sesión"
+fmt.Println(l.GetPlural("%d hours", 1, 1)) //"1 hora" 
+fmt.Println(l.GetPlural("%d hours", 2, 2)) //"2 horas"
 ```
 
 You can use any package which implements the `localizer/store.TranslationStore` interface to load translations. The above
