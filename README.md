@@ -53,7 +53,7 @@ gotl.AddDomain("messages")
 
 l, err := localizer.NewLocaleWithStore(language.Spanish, gotl)
 if err != nil {
-	panic(err)
+    panic(err)
 }
     
 fmt.Println(l.Get("Login")) //"Iniciar sesión"
