@@ -9,7 +9,8 @@ replace (
 )
 
 require (
+	github.com/leonelquinteros/gotext v1.4.0 // indirect
 	github.com/razor-1/gotext v0.0.0-00010101000000-000000000000
-	github.com/razor-1/localizer v0.0.0-00010101000000-000000000000
+	github.com/razor-1/localizer v0.0.3
 	golang.org/x/text v0.3.3
 )
