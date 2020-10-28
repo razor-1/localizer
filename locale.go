@@ -21,6 +21,8 @@ type Locale struct {
 	Number       cldr.Number
 	Calendar     cldr.Calendar
 	Plural       cldr.Plural
+	Languages    cldr.Languages
+	Territories  cldr.Territories
 	catalog      *catalog.Builder
 	translations map[string]*store.Translation
 	trMutex      sync.RWMutex
@@ -45,6 +47,8 @@ func NewLocale(tag language.Tag) (loc *Locale, err error) {
 		Number:       localeData.Number,
 		Calendar:     localeData.Calendar,
 		Plural:       localeData.Plural,
+		Languages:    localeData.Languages,
+		Territories:  localeData.Territories,
 		catalog:      catalog.NewBuilder(),
 		translations: make(map[string]*store.Translation),
 	}
