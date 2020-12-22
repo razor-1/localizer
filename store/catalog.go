@@ -20,7 +20,6 @@ func NewLocaleCatalog(tag language.Tag) LocaleCatalog {
 }
 
 //TranslationStore is implemented by packages that offer a way to load translations.
-//For example, github.com/razor-1/go-gettext implements it to pull in gettext (.po/.mo) translations
 type TranslationStore interface {
 	GetTranslations(tag language.Tag) (LocaleCatalog, error)
 }
