@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: en_US\n"
+"X-Generator: Unknown 1.0.0\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "language"
+msgstr "en_US"
+
+# test fixture for gotextstore
+msgid "message-id"
+msgstr "Translated text"
+
+msgid "One with var: %s"
+msgid_plural "Several with vars: %s"
+msgstr[0] "This one is the singular: %s"
+msgstr[1] "This one is the plural: %s"
+
