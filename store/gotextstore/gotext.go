@@ -60,5 +60,6 @@ func (gtstore *gotextStore) GetTranslations(tag language.Tag) (store.LocaleCatal
 		}
 	}
 
+	lc.Translations = storeTranslations
 	return lc, nil
 }
