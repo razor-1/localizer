@@ -36,7 +36,7 @@ func main() {
 
     fmt.Println(month) // "enero"
     fmt.Println(l.Calendar.FormatNames.Months.Wide.Jan) // "enero"
-    fmt.Println(l.FmtNumber(10000.12)) // "100.000,12"
+    fmt.Println(l.FmtNumber(10000.12)) // "10.000,12"
     cur, err := l.FmtCurrency(currency.USD, 10000.12)
     if err != nil {
         panic(err)
@@ -51,20 +51,21 @@ As you can see, the locale object makes it easy to interact with CLDR data. What
 gotl := gotext.NewLocale("translations", "es")
 gotl.AddDomain("messages")
 
-l, err := localizer.NewLocaleWithStore(language.Spanish, gotl)
+gtstore := gotextstore.GetTranslationStore(gotl)
+l, err := localizer.NewLocaleWithStore(language.Spanish, gtstore)
 if err != nil {
     panic(err)
 }
-    
-fmt.Println(l.Get("Login")) //"Iniciar sesión"
-fmt.Println(l.GetPlural("%d hours", 1, 1)) //"1 hora" 
+
+fmt.Println(l.Get("form.button.login")) //"Iniciar sesión"
+fmt.Println(l.GetPlural("%d hours", 1, 1)) //"1 hora"
 fmt.Println(l.GetPlural("%d hours", 2, 2)) //"2 horas"
 ```
 
 You can use any package which implements the `localizer/store.TranslationStore` interface to load translations. The above
-example uses the gotext package, providing gettext po/mo support. Hopefully other common packages will implement this
-interface to provide support for xliff, xmb, and other common formats. You can also easily implement it for your own
-custom store.
+example uses a helper package, localizer/gotextstore, which integrates with github.com/leonelquinteros/gotext to
+provid gettext po/mo support for localizer. If other packages implement this interface, support for xliff, xmb, and 
+other common formats can be added. You can also easily implement it for your own custom store.
 
 localizer also exposes a [message](https://godoc.org/golang.org/x/text/message) printer if you'd like to use it. 
 Just call `l.NewPrinter()` and you can then call `Printf()` and other methods on it.
