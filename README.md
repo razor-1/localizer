@@ -54,7 +54,7 @@ gotl.AddDomain("messages")
 gtstore := gotextstore.GetTranslationStore(gotl)
 l, err := localizer.NewLocaleWithStore(language.Spanish, gtstore)
 if err != nil {
-panic(err)
+    panic(err)
 }
 
 fmt.Println(l.Get("form.button.login")) //"Iniciar sesión"
