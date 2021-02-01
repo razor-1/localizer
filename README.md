@@ -63,8 +63,8 @@ fmt.Println(l.GetPlural("%d hours", 2, 2)) //"2 horas"
 ```
 
 You can use any package which implements the `localizer/store.TranslationStore` interface to load translations. The above
-example uses a helper package, localizer/gotextstore, which integrates with github.com/leonelquinteros/gotext to
-provid gettext po/mo support for localizer. If other packages implement this interface, support for xliff, xmb, and 
+example uses a helper package, localizer/gotextstore, which integrates with [gotext](https://github.com/leonelquinteros/gotext) to
+provide gettext po/mo support for localizer. If other packages implement this interface, support for xliff, xmb, and 
 other common formats can be added. You can also easily implement it for your own custom store.
 
 localizer also exposes a [message](https://godoc.org/golang.org/x/text/message) printer if you'd like to use it. 
