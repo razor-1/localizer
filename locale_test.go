@@ -11,6 +11,13 @@ import (
 	"github.com/razor-1/localizer/store"
 )
 
+const (
+	msgID         = "test"
+	msgStr        = "testXlate"
+	pluralMinutes = "%d minutes"
+	pluralMinute  = "%d minute"
+)
+
 var enTag = language.Make("en")
 
 func TestNewLocale(t *testing.T) {
@@ -78,16 +85,8 @@ func (ld *loader) GetTranslations(_ language.Tag) (store.LocaleCatalog, error) {
 	return ld.catalog, nil
 }
 
-func TestLocale_Load(t *testing.T) {
-	const msgID = "test"
-	const msgStr = "testXlate"
-	const pluralMinutes = "%d minutes"
-	const pluralMinute = "%d minute"
-
-	ta := assert.New(t)
-
-	l, err := localizer.NewLocale(enTag)
-	ta.NoError(err)
+func getTestStore(t *testing.T) *loader {
+	t.Helper()
 
 	translations := make(map[string]*store.Translation)
 	translations[msgID] = &store.Translation{
@@ -110,6 +109,16 @@ func TestLocale_Load(t *testing.T) {
 		},
 	}
 
+	return testStore
+}
+
+func TestLocale_Load(t *testing.T) {
+	ta := assert.New(t)
+
+	l, err := localizer.NewLocale(enTag)
+	ta.NoError(err)
+
+	testStore := getTestStore(t)
 	err = l.Load(testStore)
 	ta.NoError(err)
 	ta.Equal(msgStr, l.Get(msgID))
@@ -119,4 +128,24 @@ func TestLocale_Load(t *testing.T) {
 
 	ta.Equal("1 minute", l.GetPlural(pluralMinutes, 1, 1))
 	ta.Equal("2 minutes", l.GetPlural(pluralMinutes, 2, 2))
+}
+
+func TestNewLocaleWithStore(t *testing.T) {
+	ta := assert.New(t)
+	testStore := getTestStore(t)
+
+	l, err := localizer.NewLocaleWithStore(enTag, testStore)
+	ta.NoError(err)
+	ta.NotNil(l)
+	ta.Equal(enTag, l.Tag)
+}
+
+func TestLocale_GetTranslations(t *testing.T) {
+	ta := assert.New(t)
+	testStore := getTestStore(t)
+	l, err := localizer.NewLocaleWithStore(enTag, testStore)
+	ta.NoError(err)
+
+	cat := l.GetTranslations()
+	ta.Len(cat, len(testStore.catalog.Translations))
 }

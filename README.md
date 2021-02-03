@@ -1,5 +1,10 @@
 # Localizer: convenient localization for Go
 
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/razor-1/localizer/CI?style=flat-square)](https://github.com/razor-1/localizer/actions?query=workflow%3Abuild)
+[![Go Report Card](https://goreportcard.com/badge/github.com/razor-1/localizer?style=flat-square)](https://goreportcard.com/report/github.com/razor-1/localizer)
+![Go Version](https://img.shields.io/badge/go%20version-%3E=1.15-61CFDD.svg?style=flat-square)
+[![PkgGoDev](https://pkg.go.dev/badge/github.com/razor-1/localizer)](https://pkg.go.dev/github.com/razor-1/localizer)
+
 Localizer intends to make it easy for you to work with locales in Go. It was inspired by 
 many good tools that came before it, such as:
 * [Babel](http://babel.pocoo.org/) for Python

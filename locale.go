@@ -16,6 +16,7 @@ import (
 	"github.com/razor-1/localizer/store"
 )
 
+//Locale is the struct providing access to most of the localizer features
 type Locale struct {
 	Tag          language.Tag
 	Number       cldr.Number
@@ -79,6 +80,7 @@ func GetLocale(tag language.Tag) *Locale {
 	return loadedLocales[tag]
 }
 
+//FmtParams contains substitutions for python-style format strings
 type FmtParams map[string]interface{}
 
 var namedParameter = regexp.MustCompile(`%\((\w+?)\)(\S)?`)
