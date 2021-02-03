@@ -11,6 +11,7 @@ type LocaleCatalog struct {
 	Translations map[string]*Translation
 }
 
+//NewLocaleCatalog creates an empty LocaleCatalog for the supplied language
 func NewLocaleCatalog(tag language.Tag) LocaleCatalog {
 	return LocaleCatalog{
 		Tag:          tag,
