@@ -18,15 +18,16 @@ import (
 
 //Locale is the struct providing access to most of the localizer features
 type Locale struct {
-	Tag          language.Tag
-	Number       cldr.Number
-	Calendar     cldr.Calendar
-	Plural       cldr.Plural
-	Languages    cldr.Languages
-	Territories  cldr.Territories
-	catalog      *catalog.Builder
-	translations map[string]*store.Translation
-	trMutex      sync.RWMutex
+	Tag            language.Tag
+	Number         cldr.Number
+	Calendar       cldr.Calendar
+	Plural         cldr.Plural
+	Languages      cldr.Languages
+	Territories    cldr.Territories
+	DisplayPattern cldr.LocaleDisplayPattern
+	catalog        *catalog.Builder
+	translations   map[string]*store.Translation
+	trMutex        sync.RWMutex
 }
 
 var llMutex sync.RWMutex
@@ -44,14 +45,15 @@ func NewLocale(tag language.Tag) (loc *Locale, err error) {
 		return
 	}
 	l := Locale{
-		Tag:          tag,
-		Number:       localeData.Number,
-		Calendar:     localeData.Calendar,
-		Plural:       localeData.Plural,
-		Languages:    localeData.Languages,
-		Territories:  localeData.Territories,
-		catalog:      catalog.NewBuilder(),
-		translations: make(map[string]*store.Translation),
+		Tag:            tag,
+		Number:         localeData.Number,
+		Calendar:       localeData.Calendar,
+		Plural:         localeData.Plural,
+		Languages:      localeData.Languages,
+		Territories:    localeData.Territories,
+		DisplayPattern: localeData.Display,
+		catalog:        catalog.NewBuilder(),
+		translations:   make(map[string]*store.Translation),
 	}
 
 	llMutex.Lock()
