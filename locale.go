@@ -179,6 +179,11 @@ func (l *Locale) GetTranslations() map[string]store.Translation {
 	return trans
 }
 
+//CountTranslations returns the number of translations currently loaded in this locale.
+func (l *Locale) CountTranslations() int {
+	return len(l.translations)
+}
+
 //NewPrinter creates a message.Printer for the Locale
 func (l *Locale) NewPrinter() *message.Printer {
 	return message.NewPrinter(l.Tag, message.Catalog(l.catalog))
