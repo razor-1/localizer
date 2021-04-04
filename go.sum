@@ -1,12 +1,15 @@
 github.com/davecgh/go-spew v1.1.0 h1:ZDRjVQ15GmhC3fiQ8ni8+OwkZQO4DARzQgrnXU1Liz8=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/imdario/mergo v0.3.11/go.mod h1:jmQim1M+e3UYxmgPu/WyfjB3N3VflVyUjjjwH0dnCYA=
+github.com/imdario/mergo v0.3.12/go.mod h1:jmQim1M+e3UYxmgPu/WyfjB3N3VflVyUjjjwH0dnCYA=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/razor-1/cldr v0.1.13 h1:vFwBz7e/OAv7DRPNcEqgn6fARSWgICm2o2Y+PwlG9To=
 github.com/razor-1/cldr v0.1.13/go.mod h1:eMG1KKWFcUlDHpovYNd4ePUlPa1hSRvNL0wjfOqsahY=
-github.com/razor-1/cldr/resources v0.1.13 h1:6uMybcgVvWF3mQBHEyMGLLSkaohTCo2itH11cuappWA=
+github.com/razor-1/cldr v0.1.14 h1:ClPDMkhHElW5u1guZu0QvXUAx7tZq9XYz8drCHnDYwY=
+github.com/razor-1/cldr v0.1.14/go.mod h1:iloTocV1aHPPlIRy5VsLV6LXnUTVah2tEATZo9xwJtM=
 github.com/razor-1/cldr/resources v0.1.13/go.mod h1:hEVqzSEnXVnDX7HB1JbZVDc6TrY0/+eW8U2GkZ/GEIM=
+github.com/razor-1/cldr/resources v0.1.14 h1:vB+fuhJSTG5iYveYrh6lr26ilv/YtQO6xbgIgpgT93E=
+github.com/razor-1/cldr/resources v0.1.14/go.mod h1:2F8SwtBKNSrC2p6WHuvMe1wlbnmjSbFCVGAUM3yIOi0=
 github.com/razor-1/cldr/resources/currency v0.1.2 h1:gYeHv6R8SA+ee2RcxJ5+5gqJlV0BsmRjuKCRjYui5+4=
 github.com/razor-1/cldr/resources/currency v0.1.2/go.mod h1:GF2TggMqnMOWKmXMdG7Aoklpxmvb80DibWQBKdvXfM4=
 github.com/razor-1/cldr/resources/language v0.1.2 h1:ECYHXoKfxpMrKWktwJ9nWseOdhfJww8Vm1k/sKIEme0=
