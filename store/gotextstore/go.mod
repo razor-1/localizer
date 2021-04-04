@@ -4,8 +4,8 @@ go 1.15
 
 require (
 	github.com/leonelquinteros/gotext v1.4.1-0.20201029135154-1b8a993ae40a
-	github.com/razor-1/localizer v0.0.7
-	github.com/razor-1/localizer/store v0.0.1
-	github.com/stretchr/testify v1.6.1
-	golang.org/x/text v0.3.4
+	github.com/razor-1/localizer v0.0.8
+	github.com/razor-1/localizer/store v0.0.2
+	github.com/stretchr/testify v1.7.0
+	golang.org/x/text v0.3.6
 )
