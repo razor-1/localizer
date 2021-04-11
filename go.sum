@@ -6,11 +6,13 @@ github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZb
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
 github.com/razor-1/cldr v0.1.13/go.mod h1:eMG1KKWFcUlDHpovYNd4ePUlPa1hSRvNL0wjfOqsahY=
 github.com/razor-1/cldr v0.1.14/go.mod h1:iloTocV1aHPPlIRy5VsLV6LXnUTVah2tEATZo9xwJtM=
-github.com/razor-1/cldr v0.1.15 h1:56BTVAIl/FqIX3shEkzaZZzSOfj9wOJO8zy+x9iMYYk=
 github.com/razor-1/cldr v0.1.15/go.mod h1:UTBJwc3wpFGet2eHK6YKQZn1iZ6j6Y6AFh+myuY1nrE=
+github.com/razor-1/cldr v0.1.16 h1:I+6qrNIOAVJUPdMg1kFZ/6iw+a1uF2Lb5ND9RYbYMjM=
+github.com/razor-1/cldr v0.1.16/go.mod h1:k8qCowwZypcP5UkbaColEFCxa3Hzezd0KNhc0oRu5CA=
 github.com/razor-1/cldr/resources v0.1.13/go.mod h1:hEVqzSEnXVnDX7HB1JbZVDc6TrY0/+eW8U2GkZ/GEIM=
-github.com/razor-1/cldr/resources v0.1.14 h1:vB+fuhJSTG5iYveYrh6lr26ilv/YtQO6xbgIgpgT93E=
 github.com/razor-1/cldr/resources v0.1.14/go.mod h1:2F8SwtBKNSrC2p6WHuvMe1wlbnmjSbFCVGAUM3yIOi0=
+github.com/razor-1/cldr/resources v0.1.15 h1:rAtMqza1LItQIervaBworX7Hu927Fq8KlqwNz7+d3p4=
+github.com/razor-1/cldr/resources v0.1.15/go.mod h1:l4+jIoilWBIHluTjhL8olPs6ZxDYygUK2Mc4tuVsb9I=
 github.com/razor-1/cldr/resources/currency v0.1.2 h1:gYeHv6R8SA+ee2RcxJ5+5gqJlV0BsmRjuKCRjYui5+4=
 github.com/razor-1/cldr/resources/currency v0.1.2/go.mod h1:GF2TggMqnMOWKmXMdG7Aoklpxmvb80DibWQBKdvXfM4=
 github.com/razor-1/cldr/resources/language v0.1.2 h1:ECYHXoKfxpMrKWktwJ9nWseOdhfJww8Vm1k/sKIEme0=
