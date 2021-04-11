@@ -9,5 +9,3 @@ require (
 	github.com/stretchr/testify v1.7.0
 	golang.org/x/text v0.3.6
 )
-
-replace github.com/razor-1/localizer => ../
