@@ -7,8 +7,8 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/razor-1/cldr"
-	"github.com/razor-1/cldr/resources"
+	"github.com/razor-1/localizer-cldr"
+	"github.com/razor-1/localizer-cldr/resources"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 	"golang.org/x/text/message/catalog"
