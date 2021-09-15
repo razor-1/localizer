@@ -5,8 +5,8 @@ github.com/leonelquinteros/gotext v1.5.0 h1:ODY7LzLpZWWSJdAHnzhreOr6cwLXTAmc914F
 github.com/leonelquinteros/gotext v1.5.0/go.mod h1:OCiUVHuhP9LGFBQ1oAmdtNCHJCiHiQA8lf4nAifHkr0=
 github.com/pmezard/go-difflib v1.0.0 h1:4DBwDE0NGyQoBHbLQYPwSUPoCMWR5BEzIk/f1lZbAQM=
 github.com/pmezard/go-difflib v1.0.0/go.mod h1:iKH77koFhYxTK1pcRnkKkqfTogsbg7gZNVY4sRDYZ/4=
-github.com/razor-1/cldr v0.2.0 h1:rTbiZUr43ZRWfpeBPa8fXIXDETstZo9Lf7DWMX0OhoA=
-github.com/razor-1/cldr v0.2.0/go.mod h1:DW7bKH2W6ThJcJcpWQmyhyyL0NInlvMAaVwojaMypZk=
+github.com/razor-1/localizer-cldr v0.2.0 h1:GAAWNtL3pS++mHtWAB4EF/55bw7IY2xeOnucdXhdJf8=
+github.com/razor-1/localizer-cldr v0.2.0/go.mod h1:urcdU6Zwv/mAWElxdfzwzLqFpC69K1clnwYQsvau79A=
 github.com/stretchr/objx v0.1.0/go.mod h1:HFkY916IF+rwdDfMAkV7OtwuqBVzrE8GR6GFx+wExME=
 github.com/stretchr/testify v1.7.0 h1:nwc3DEeHmmLAfoZucVR881uASk0Mfjw8xYJ99tb5CcY=
 github.com/stretchr/testify v1.7.0/go.mod h1:6Fq8oRcR53rry900zMqJjRRixrwX3KX962/h/Wwjteg=

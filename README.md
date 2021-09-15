@@ -17,14 +17,16 @@ as much as possible, since it takes care of some difficult tasks.
 
 ## Getting Started: Example
 ```go
+package main
+
 import (
     "fmt"
     "time"
 
-    "github.com/razor-1/cldr/resources/currency"
     "golang.org/x/text/language"
 
     "github.com/razor-1/localizer"
+	"github.com/razor-1/localizer-cldr/resources/currency"
 )
 
 func main() {
