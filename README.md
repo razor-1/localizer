@@ -26,7 +26,7 @@ import (
     "golang.org/x/text/language"
 
     "github.com/razor-1/localizer"
-	"github.com/razor-1/localizer-cldr/resources/currency"
+    "github.com/razor-1/localizer-cldr/resources/currency"
 )
 
 func main() {
