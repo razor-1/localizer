@@ -134,6 +134,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 // Unicode CLDR.
 func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 	//find the closest valid language for the supplied tag
+	originalTag := tag
 	for {
 		if loc, err := resources.GetLocale(tag); err == nil {
 			return loc, nil
@@ -145,7 +146,7 @@ func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 	}
 
 	// see if we have a fallback
-	if fallbackTag, err := getFallbackTag(tag); err == nil {
+	if fallbackTag, err := getFallbackTag(originalTag); err == nil {
 		if loc, err := resources.GetLocale(fallbackTag); err == nil {
 			return loc, nil
 		}

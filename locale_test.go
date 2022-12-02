@@ -149,3 +149,15 @@ func TestLocale_GetTranslations(t *testing.T) {
 	cat := l.GetTranslations()
 	ta.Len(cat, len(testStore.catalog.Translations))
 }
+
+func TestGetLocaleData(t *testing.T) {
+	ta := assert.New(t)
+
+	tag, err := language.Parse("ase")
+	ta.NoError(err)
+	ta.Equal("ase", tag.String())
+
+	l, err := localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.AmericanEnglish, language.MustParse(l.Locale))
+}
