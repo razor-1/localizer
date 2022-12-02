@@ -1,7 +1,6 @@
 package localizer
 
 import (
-	"errors"
 	"fmt"
 	"regexp"
 	"strings"
@@ -16,7 +15,7 @@ import (
 	"github.com/razor-1/localizer/store"
 )
 
-//Locale is the struct providing access to most of the localizer features
+// Locale is the struct providing access to most of the localizer features
 type Locale struct {
 	Tag            language.Tag
 	Number         cldr.Number
@@ -33,9 +32,9 @@ type Locale struct {
 var llMutex sync.RWMutex
 var loadedLocales = make(map[language.Tag]*Locale)
 
-//NewLocale instantiates a new Locale for the supplied language tag. It does not load any translations, so it's
-//useful when you only need to use the CLDR data (number/calendar etc). Use NewLocaleWithStore to load translations
-//at initialization time, or call Load on the Locale returned by this function.
+// NewLocale instantiates a new Locale for the supplied language tag. It does not load any translations, so it's
+// useful when you only need to use the CLDR data (number/calendar etc). Use NewLocaleWithStore to load translations
+// at initialization time, or call Load on the Locale returned by this function.
 func NewLocale(tag language.Tag) (loc *Locale, err error) {
 	if loaded := GetLocale(tag); loaded != nil {
 		return loaded, nil
@@ -63,8 +62,8 @@ func NewLocale(tag language.Tag) (loc *Locale, err error) {
 	return &l, nil
 }
 
-//NewLocaleWithStore instantiates a new Locale for the supplied language tag. It loads the translations from the source
-//store.TranslationStore. Use this if you know you want your Locale to be populated with translations.
+// NewLocaleWithStore instantiates a new Locale for the supplied language tag. It loads the translations from the source
+// store.TranslationStore. Use this if you know you want your Locale to be populated with translations.
 func NewLocaleWithStore(tag language.Tag, source store.TranslationStore) (loc *Locale, err error) {
 	loc, err = NewLocale(tag)
 	if err != nil {
@@ -82,12 +81,12 @@ func GetLocale(tag language.Tag) *Locale {
 	return loadedLocales[tag]
 }
 
-//FmtParams contains substitutions for python-style format strings
+// FmtParams contains substitutions for python-style format strings
 type FmtParams map[string]interface{}
 
 var namedParameter = regexp.MustCompile(`%\((\w+?)\)(\S)?`)
 
-//NamedParameters does string formatting on python-style format strings like "Hello %(name)s".
+// NamedParameters does string formatting on python-style format strings like "Hello %(name)s".
 func NamedParameters(format string, params FmtParams) string {
 	//if we have something like "%(name)" without a trailing format specifier, use defaultFormat
 	const defaultFormat = "s"
@@ -121,8 +120,18 @@ func NamedParameters(format string, params FmtParams) string {
 	return strings.NewReplacer(args...).Replace(format)
 }
 
-//GetLocaleData finds the best match for tag and returns a *cldr.Locale, which contains data populated from the
-//Unicode CLDR.
+func getFallbackTag(tag language.Tag) (language.Tag, error) {
+	switch tag.String() {
+	case "ase":
+		// there is no CLDR locale for American Sign Language, so we need to fall back to en-US
+		return language.AmericanEnglish, nil
+	}
+
+	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
+}
+
+// GetLocaleData finds the best match for tag and returns a *cldr.Locale, which contains data populated from the
+// Unicode CLDR.
 func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 	//find the closest valid language for the supplied tag
 	for {
@@ -135,10 +144,17 @@ func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
 		}
 	}
 
-	return nil, errors.New("tag could not match a known locale")
+	// see if we have a fallback
+	if fallbackTag, err := getFallbackTag(tag); err == nil {
+		if loc, err := resources.GetLocale(fallbackTag); err == nil {
+			return loc, nil
+		}
+	}
+
+	return nil, fmt.Errorf("localizer.GetLocaleData: tag %s could not match a known locale", tag.String())
 }
 
-//Load retrieves all translations from the supplied store.TranslationStore and prepares them for use in this Locale.
+// Load retrieves all translations from the supplied store.TranslationStore and prepares them for use in this Locale.
 func (l *Locale) Load(source store.TranslationStore) error {
 	lc, err := source.GetTranslations(l.Tag)
 	if err != nil {
@@ -155,7 +171,7 @@ func (l *Locale) Load(source store.TranslationStore) error {
 	return nil
 }
 
-//Get returns the raw translated string from the catalog, with no formatting.
+// Get returns the raw translated string from the catalog, with no formatting.
 func (l *Locale) Get(key string) string {
 	l.trMutex.RLock()
 	defer l.trMutex.RUnlock()
@@ -166,9 +182,9 @@ func (l *Locale) Get(key string) string {
 	return key
 }
 
-//GetTranslations returns the entire catalog of translations currently loaded for this locale. This allows for
-//enumeration of the catalog. Note that it returns a copy so that the internal store can continue to be protected
-//by mutexes.
+// GetTranslations returns the entire catalog of translations currently loaded for this locale. This allows for
+// enumeration of the catalog. Note that it returns a copy so that the internal store can continue to be protected
+// by mutexes.
 func (l *Locale) GetTranslations() map[string]store.Translation {
 	l.trMutex.RLock()
 	defer l.trMutex.RUnlock()
@@ -181,19 +197,19 @@ func (l *Locale) GetTranslations() map[string]store.Translation {
 	return trans
 }
 
-//CountTranslations returns the number of translations currently loaded in this locale.
+// CountTranslations returns the number of translations currently loaded in this locale.
 func (l *Locale) CountTranslations() int {
 	return len(l.translations)
 }
 
-//NewPrinter creates a message.Printer for the Locale
+// NewPrinter creates a message.Printer for the Locale
 func (l *Locale) NewPrinter() *message.Printer {
 	return message.NewPrinter(l.Tag, message.Catalog(l.catalog))
 }
 
-//GetPlural determines which plural form should be used for the supplied number. number can be an int type (including
-//int64) or a float formatted as a string. It then determines which plural form should be used by calling the cldr
-//plural function, and returns the corresponding plural translation, formatted with the optional vars.
+// GetPlural determines which plural form should be used for the supplied number. number can be an int type (including
+// int64) or a float formatted as a string. It then determines which plural form should be used by calling the cldr
+// plural function, and returns the corresponding plural translation, formatted with the optional vars.
 func (l *Locale) GetPlural(pluralID string, number interface{}, vars ...interface{}) string {
 	ops, err := cldr.NewOperands(number)
 	if err != nil {
