@@ -1,6 +1,6 @@
 # Localizer: convenient localization for Go
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/razor-1/localizer/Build?style=flat-square)](https://github.com/razor-1/localizer/actions?query=workflow%3ABuild)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/razor-1/localizer/build.yaml?style=flat-square)](https://github.com/razor-1/localizer/actions?query=workflow%3ABuild)
 [![Go Report Card](https://goreportcard.com/badge/github.com/razor-1/localizer?style=flat-square)](https://goreportcard.com/report/github.com/razor-1/localizer)
 ![Go Version](https://img.shields.io/badge/go%20version-%3E=1.15-61CFDD.svg?style=flat-square)
 [![PkgGoDev](https://pkg.go.dev/badge/github.com/razor-1/localizer)](https://pkg.go.dev/github.com/razor-1/localizer)
