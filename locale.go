@@ -88,7 +88,7 @@ var namedParameter = regexp.MustCompile(`%\((\w+?)\)(\S)?`)
 
 // NamedParameters does string formatting on python-style format strings like "Hello %(name)s".
 func NamedParameters(format string, params FmtParams) string {
-	//if we have something like "%(name)" without a trailing format specifier, use defaultFormat
+	// if we have something like "%(name)" without a trailing format specifier, use defaultFormat
 	const defaultFormat = "s"
 
 	matches := namedParameter.FindAllStringSubmatch(format, -1)
@@ -125,6 +125,9 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "ase":
 		// there is no CLDR locale for American Sign Language, so we need to fall back to en-US
 		return language.AmericanEnglish, nil
+	case "ht":
+		// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
+		return language.Make("fr-HT"), nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
@@ -133,7 +136,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 // GetLocaleData finds the best match for tag and returns a *cldr.Locale, which contains data populated from the
 // Unicode CLDR.
 func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
-	//find the closest valid language for the supplied tag
+	// find the closest valid language for the supplied tag
 	originalTag := tag
 	for {
 		if loc, err := resources.GetLocale(tag); err == nil {
