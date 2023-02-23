@@ -3,7 +3,7 @@ module github.com/razor-1/localizer
 go 1.17
 
 require (
-	github.com/leonelquinteros/gotext v1.5.1
+	github.com/leonelquinteros/gotext v1.5.2
 	github.com/razor-1/localizer-cldr v0.2.0
 	github.com/stretchr/testify v1.8.1
 	golang.org/x/text v0.6.0
