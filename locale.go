@@ -128,6 +128,8 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "ht":
 		// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
 		return language.Make("fr-HT"), nil
+	case "vec-BR":
+		return language.Italian, nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
