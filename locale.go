@@ -2,11 +2,11 @@ package localizer
 
 import (
 	"fmt"
+	cldr "github.com/razor-1/localizer-cldr"
 	"regexp"
 	"strings"
 	"sync"
 
-	"github.com/razor-1/localizer-cldr"
 	"github.com/razor-1/localizer-cldr/resources"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
@@ -128,7 +128,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "ht":
 		// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
 		return language.Make("fr-HT"), nil
-	case "vec-BR":
+	case "vec-BR", "ise":
 		return language.Italian, nil
 	}
 
