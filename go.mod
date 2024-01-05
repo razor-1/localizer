@@ -1,6 +1,8 @@
 module github.com/razor-1/localizer
 
-go 1.17
+go 1.21
+
+toolchain go1.21.3
 
 require (
 	github.com/leonelquinteros/gotext v1.5.2

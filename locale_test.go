@@ -173,4 +173,11 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal(language.Catalan, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("quc")
+	ta.NoError(err)
+	ta.Equal("quc", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.LatinAmericanSpanish, language.MustParse(l.Locale))
 }
