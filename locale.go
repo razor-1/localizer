@@ -125,6 +125,9 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "ase":
 		// there is no CLDR locale for American Sign Language, so we need to fall back to en-US
 		return language.AmericanEnglish, nil
+	case "asf":
+		// Australian Sign Language (Auslan)
+		return language.Make("en-AU"), nil
 	case "ht":
 		// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
 		return language.Make("fr-HT"), nil

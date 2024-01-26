@@ -160,12 +160,26 @@ func TestGetLocaleData(t *testing.T) {
 	ta.NoError(err)
 	ta.Equal(language.AmericanEnglish, language.MustParse(l.Locale))
 
+	tag, err = language.Parse("asf")
+	ta.NoError(err)
+	ta.Equal("asf", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("en-AU", language.MustParse(l.Locale).String())
+
 	tag, err = language.Parse("jam")
 	ta.NoError(err)
 	ta.Equal("jam", tag.String())
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal(language.English, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("ht")
+	ta.NoError(err)
+	ta.Equal("ht", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("fr-HT", language.MustParse(l.Locale).String())
 
 	tag, err = language.Parse("ca-valencia")
 	ta.NoError(err)
