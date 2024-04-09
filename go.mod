@@ -5,7 +5,7 @@ go 1.21
 toolchain go1.21.3
 
 require (
-	github.com/leonelquinteros/gotext v1.5.2
+	github.com/leonelquinteros/gotext v1.6.0
 	github.com/razor-1/localizer-cldr v0.2.0
 	github.com/stretchr/testify v1.9.0
 	golang.org/x/text v0.14.0
