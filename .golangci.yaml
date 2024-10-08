@@ -1,6 +1,0 @@
-linters:
-  enable:
-    - golint
-issues:
-  include:
-    - EXC0002 # disable excluding of issues about comments from golint
