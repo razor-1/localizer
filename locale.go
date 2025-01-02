@@ -2,10 +2,11 @@ package localizer
 
 import (
 	"fmt"
-	cldr "github.com/razor-1/localizer-cldr"
 	"regexp"
 	"strings"
 	"sync"
+
+	cldr "github.com/razor-1/localizer-cldr"
 
 	"github.com/razor-1/localizer-cldr/resources"
 	"golang.org/x/text/language"
@@ -137,7 +138,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.English, nil
 	case "ca-valencia":
 		return language.Catalan, nil
-	case "quc":
+	case "quc", "quh":
 		return language.LatinAmericanSpanish, nil
 	case "lir":
 		return language.English, nil
@@ -147,6 +148,10 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Make("ee"), nil
 	case "tw":
 		return language.Make("ak"), nil
+	case "psr":
+		return language.EuropeanPortuguese, nil
+	case "bzs":
+		return language.BrazilianPortuguese, nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
