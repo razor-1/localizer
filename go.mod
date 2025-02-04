@@ -8,7 +8,7 @@ require (
 	github.com/leonelquinteros/gotext v1.6.1
 	github.com/razor-1/localizer-cldr v0.2.0
 	github.com/stretchr/testify v1.10.0
-	golang.org/x/text v0.21.0
+	golang.org/x/text v0.22.0
 )
 
 require (
