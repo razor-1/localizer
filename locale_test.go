@@ -264,4 +264,11 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal("fr", language.MustParse(l.Locale).String())
+
+	tag, err = language.Parse("rmn-BG")
+	ta.NoError(err)
+	ta.Equal("rmn-BG", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("bg", language.MustParse(l.Locale).String())
 }
