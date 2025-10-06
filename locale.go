@@ -129,9 +129,6 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "asf":
 		// Australian Sign Language (Auslan)
 		return language.Make("en-AU"), nil
-	//case "ht":
-	//	// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
-	//	return language.Make("fr-HT"), nil
 	case "vec-BR", "ise":
 		return language.Italian, nil
 	case "jam":
