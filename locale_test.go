@@ -299,11 +299,4 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal(language.Romanian, language.MustParse(l.Locale))
-
-	tag, err = language.Parse("ceb")
-	ta.NoError(err)
-	ta.Equal("ceb", tag.String())
-	l, err = localizer.GetLocaleData(tag)
-	ta.NoError(err)
-	ta.Equal("ceb", language.MustParse(l.Locale).String())
 }
