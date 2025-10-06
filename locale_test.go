@@ -179,7 +179,7 @@ func TestGetLocaleData(t *testing.T) {
 	ta.Equal("ht", tag.String())
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
-	ta.Equal("fr-HT", language.MustParse(l.Locale).String())
+	ta.Equal("ht", language.MustParse(l.Locale).String())
 
 	tag, err = language.Parse("ca-valencia")
 	ta.NoError(err)
@@ -193,7 +193,7 @@ func TestGetLocaleData(t *testing.T) {
 	ta.Equal("quc", tag.String())
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
-	ta.Equal(language.LatinAmericanSpanish, language.MustParse(l.Locale))
+	ta.Equal("quc", language.MustParse(l.Locale).String())
 
 	tag, err = language.Parse("lir")
 	ta.NoError(err)
@@ -278,4 +278,25 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal(language.Croatian, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("ts-MZ")
+	ta.NoError(err)
+	ta.Equal("ts-MZ", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("ts", language.MustParse(l.Locale).String())
+
+	tag, err = language.Parse("rmc-SK")
+	ta.NoError(err)
+	ta.Equal("rmc-SK", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.Slovak, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("rmy")
+	ta.NoError(err)
+	ta.Equal("rmy", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.Romanian, language.MustParse(l.Locale))
 }
