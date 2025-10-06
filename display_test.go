@@ -21,7 +21,7 @@ func TestLocale_DisplayName(t *testing.T) {
 	ta.NoError(err)
 	ta.Equal("español", l.DisplayName(language.Spanish))
 	ta.Equal("inglés", l.DisplayName(language.English))
-	ta.Equal("inglés estadounidense", l.DisplayName(language.AmericanEnglish))
+	ta.Equal("inglés (EE. UU.)", l.DisplayName(language.AmericanEnglish))
 }
 
 func ExampleLocale_DisplayName() {

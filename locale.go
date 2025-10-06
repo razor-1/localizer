@@ -6,9 +6,9 @@ import (
 	"strings"
 	"sync"
 
-	cldr "github.com/razor-1/localizer-cldr"
+	"github.com/razor-1/cldr"
 
-	"github.com/razor-1/localizer-cldr/resources"
+	"github.com/razor-1/cldr/resources"
 	"golang.org/x/text/language"
 	"golang.org/x/text/message"
 	"golang.org/x/text/message/catalog"
@@ -129,16 +129,16 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	case "asf":
 		// Australian Sign Language (Auslan)
 		return language.Make("en-AU"), nil
-	case "ht":
-		// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
-		return language.Make("fr-HT"), nil
+	//case "ht":
+	//	// Haitian Creole is simply not part of CLDR, as of 2023-01-23. This is very surprising.
+	//	return language.Make("fr-HT"), nil
 	case "vec-BR", "ise":
 		return language.Italian, nil
 	case "jam":
 		return language.English, nil
 	case "ca-valencia":
 		return language.Catalan, nil
-	case "quc", "quh":
+	case "quh":
 		return language.LatinAmericanSpanish, nil
 	case "lir":
 		return language.English, nil
@@ -162,6 +162,10 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Bulgarian, nil
 	case "csq":
 		return language.Croatian, nil
+	case "rmc-SK":
+		return language.Slovak, nil
+	case "rmy":
+		return language.Romanian, nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
