@@ -153,7 +153,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Make("ln"), nil
 	case "gpe":
 		return language.English, nil
-	case "gcf":
+	case "gcf", "swc":
 		return language.French, nil
 	case "rmn-BG":
 		return language.Bulgarian, nil
