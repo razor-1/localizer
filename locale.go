@@ -161,7 +161,7 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Croatian, nil
 	case "rmc-SK":
 		return language.Slovak, nil
-	case "rmy":
+	case "rmy", "rms":
 		return language.Romanian, nil
 	}
 
