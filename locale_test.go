@@ -314,6 +314,13 @@ func TestGetLocaleData(t *testing.T) {
 	ta.NoError(err)
 	ta.Equal(language.Romanian, language.MustParse(l.Locale))
 
+	tag, err = language.Parse("gug")
+	ta.NoError(err)
+	ta.Equal("gug", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("gn", language.MustParse(l.Locale).String())
+
 	tag, err = language.Parse("swc-CD-x-katanga")
 	ta.NoError(err)
 	ta.Equal("swc-CD-x-katanga", tag.String())
