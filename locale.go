@@ -170,9 +170,25 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
 }
 
+func getOverrideTag(tag language.Tag) (language.Tag, error) {
+	switch tag.String() {
+	case "ts-MZ":
+		return language.EuropeanPortuguese, nil
+	}
+
+	return language.Tag{}, fmt.Errorf("no override for tag %s", tag.String())
+}
+
 // GetLocaleData finds the best match for tag and returns a *cldr.Locale, which contains data populated from the
 // Unicode CLDR.
 func GetLocaleData(tag language.Tag) (*cldr.Locale, error) {
+	// see if we have an override, to force a given tag to a different locale
+	if overrideTag, err := getOverrideTag(tag); err == nil {
+		if loc, err := resources.GetLocale(overrideTag); err == nil {
+			return loc, nil
+		}
+	}
+
 	// find the closest valid language for the supplied tag
 	originalTag := tag
 	for {

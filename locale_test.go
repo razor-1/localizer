@@ -279,12 +279,17 @@ func TestGetLocaleData(t *testing.T) {
 	ta.NoError(err)
 	ta.Equal(language.Croatian, language.MustParse(l.Locale))
 
+	// ts-MZ uses Portuguese for CLDR data but still has its own tag and translations
+	// there is a special override to force this, so that we don't get Tsonga CLDR data
 	tag, err = language.Parse("ts-MZ")
 	ta.NoError(err)
 	ta.Equal("ts-MZ", tag.String())
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
-	ta.Equal("ts", language.MustParse(l.Locale).String())
+	ta.Equal(language.EuropeanPortuguese, language.MustParse(l.Locale))
+	loc, err := localizer.NewLocale(tag)
+	ta.NoError(err)
+	ta.Equal(tag, loc.Tag)
 
 	tag, err = language.Parse("rmc-SK")
 	ta.NoError(err)
