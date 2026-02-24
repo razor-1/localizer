@@ -339,4 +339,11 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal(language.Macedonian, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("sop")
+	ta.NoError(err)
+	ta.Equal("sop", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal("lu", language.MustParse(l.Locale).String())
 }
