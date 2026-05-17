@@ -346,4 +346,18 @@ func TestGetLocaleData(t *testing.T) {
 	l, err = localizer.GetLocaleData(tag)
 	ta.NoError(err)
 	ta.Equal("lu", language.MustParse(l.Locale).String())
+
+	tag, err = language.Parse("ssp")
+	ta.NoError(err)
+	ta.Equal("ssp", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.LatinAmericanSpanish, language.MustParse(l.Locale))
+
+	tag, err = language.Parse("ksw")
+	ta.NoError(err)
+	ta.Equal("ksw", tag.String())
+	l, err = localizer.GetLocaleData(tag)
+	ta.NoError(err)
+	ta.Equal(language.Burmese, language.MustParse(l.Locale))
 }
