@@ -171,6 +171,8 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Make("lu"), nil
 	case "ksw":
 		return language.Burmese, nil
+	case "djk":
+		return language.English, nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
