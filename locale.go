@@ -131,16 +131,12 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Make("en-AU"), nil
 	case "vec-BR", "ise":
 		return language.Italian, nil
-	case "jam":
+	case "djk", "gpe", "bzj", "lir", "jam", "icr":
 		return language.English, nil
 	case "ca-valencia":
 		return language.Catalan, nil
 	case "quh", "ssp":
 		return language.LatinAmericanSpanish, nil
-	case "lir":
-		return language.English, nil
-	case "bzj":
-		return language.English, nil
 	case "fon":
 		return language.Make("ee"), nil
 	case "tw":
@@ -151,8 +147,6 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.BrazilianPortuguese, nil
 	case "tll":
 		return language.Make("ln"), nil
-	case "gpe":
-		return language.English, nil
 	case "gcf", "sw", "swc", "swc-CD-x-katanga":
 		return language.French, nil
 	case "rmn-BG":
@@ -171,8 +165,6 @@ func getFallbackTag(tag language.Tag) (language.Tag, error) {
 		return language.Make("lu"), nil
 	case "ksw":
 		return language.Burmese, nil
-	case "djk":
-		return language.English, nil
 	}
 
 	return language.Tag{}, fmt.Errorf("no fallback for tag %s", tag.String())
