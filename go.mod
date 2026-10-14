@@ -1,9 +1,9 @@
 module github.com/razor-1/localizer
 
-go 1.26.0
+go 1.27
 
 require (
-	github.com/leonelquinteros/gotext v1.7.2
+	github.com/leonelquinteros/gotext v1.8.0
 	github.com/razor-1/cldr v0.3.1
 	github.com/stretchr/testify v1.12.1
 	golang.org/x/text v0.42.0
